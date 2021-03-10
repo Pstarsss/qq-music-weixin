@@ -1,0 +1,64 @@
+@import '/utils/css/font.wxss';
+.container{
+  width: 100%;
+}
+.theme{
+  /* background: linear-gradient(45deg, #009688, yellowgreen, pink, #03a9f4, #9c27b0, #8bc34a);
+  background-clip: text; */
+  text-align: center;
+  color: rgb(255,98,51);
+  text-shadow: 0px 0px #992400, 1px 1px rgba(152, 36, 1, 0.98), 2px 2px rgba(151, 37, 2, 0.96), 3px 3px rgba(151, 37, 2, 0.94), 4px 4px rgba(150, 37, 3, 0.92), 5px 5px rgba(149, 38, 4, 0.9), 6px 6px rgba(148, 38, 5, 0.88), 7px 7px rgba(148, 39, 5, 0.86);
+  font-size: 40rpx;
+}
+.list{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50rpx 24rpx 0;
+}
+.songitem{
+  height: 455rpx;
+}
+.songimg{
+  width: 330rpx;
+  height: 330rpx;
+  border-radius: 20rpx;
+}
+.songcover{
+  position: relative;
+  display: flex;
+  margin-bottom: 10rpx;
+}
+.songcount{
+  position: absolute;
+  bottom: 0;
+  right: 5rpx;
+  background-color: #00000047;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 12rpx;
+}
+.sanjiao{
+  /* border: 12rpx solid;
+  border-color: transparent transparent transparent #fff;
+  border-radius: 5rpx; */
+  color: #fff;
+  font-size: 22rpx;
+  padding: 0 5rpx;
+}
+.amount{
+  font-size: 20rpx;
+  color: #fff;
+  padding-right: 5rpx;
+}
+.songname{
+  font-size: 24rpx;
+  max-width: 330rpx;
+  padding-bottom: 5rpx;
+}
+.creatorname{
+  font-size: 22rpx;
+  color:#ccc;
+}

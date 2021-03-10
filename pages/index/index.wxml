@@ -1,0 +1,16 @@
+<view class="homeContainer">
+  <view class="header"> 
+      <view class="searchTip">
+        <text>搜索</text>
+      </view>
+  </view>
+  <view class="Recommand">
+  </view>
+  <view class="Toplist">
+    <view class="Toplist-text">巅峰榜</view>
+    <block wx:for="{{toplist}}" wx:key="id">
+      <bangdanitem item="{{item}}"></bangdanitem>
+    </block>
+  </view>
+</view>
+

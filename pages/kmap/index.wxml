@@ -1,0 +1,21 @@
+<view class="searchbox">
+  <view class="search">
+    <van-icon custom-class="search-icon" placeholder-style="color:#cccccc;" size="32rpx" name="/static/image/Lark20210201-110536.png"  />
+    <input type="text" value="" class="search-text" bindinput="search_input" placeholder="输入关键词" />
+  </view>
+  <view catchtap="forsure" class="search-btn">搜索</view>
+</view>
+<map 
+  id="myMap" 
+  class="maps" 
+  bindtap="clickmap"
+  enable-building="true"
+  longitude="{{longitude}}"
+  max-scale="{{20}}"
+  latitude="{{latitude}}"
+  markers="{{markers}}"
+></map>
+<view>
+  
+</view>
+

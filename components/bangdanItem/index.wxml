@@ -1,0 +1,15 @@
+<view class="box" bindtap="onClickItem">
+  <view class="song">
+    <view class="title">{{item.topTitle}}</view>
+    <block wx:for="{{item.songList}}" wx:key="*this">
+      <view class="content">
+        <view class="ranks">{{index}}.</view>
+        <view class="songTitle">{{item.songname}}</view>
+        <text decode="{{true}}" class="author">&ensp;- {{item.singername}}</text>
+      </view>
+    </block>
+  </view>
+  <view class="coverpic">
+    <image src="{{item.picUrl}}" mode="aspectFill" class="picture"></image>
+  </view>
+</view>

@@ -1,0 +1,27 @@
+.container{
+  background-color: #f1f1f1;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+.header{
+  padding: 35rpx 0 20rpx 24rpx;
+  font-size: 32rpx;
+  font-family: cursive;
+  font-weight: 800;
+}
+.list{
+  padding:0 32rpx;
+}
+.content{
+  display: flex;
+  align-items: center;
+  font-family: cursive;
+  padding-bottom: 24rpx;
+}
+.rank{
+  padding-right: 24rpx;
+}
+.singerName{
+  font-size: 24rpx;
+  padding-top: 4rpx;
+}

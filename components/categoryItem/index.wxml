@@ -1,0 +1,7 @@
+<view class="categoryGroup">
+  <view class="categoryGroupName">{{item.categoryGroupName}}</view>
+  <view class="categoryGroupList">
+    <view class="categoryGroupitem" wx:for="{{item.items}}" wx:key="categoryId" wx:for-item="iitem" catchtap="onItemClick" data-item="{{iitem}}">
+      {{iitem.categoryName}}</view>
+  </view>
+</view>

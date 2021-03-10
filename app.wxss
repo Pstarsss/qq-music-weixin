@@ -1,0 +1,5 @@
+@import './utils/css/font.wxss';
+page{
+  background:#f6f6f6;
+  font-family: 'Stick', sans-serif;
+}

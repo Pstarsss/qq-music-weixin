@@ -1,0 +1,66 @@
+{
+  "entryPagePath": "pages/index/index",
+  "pages": [
+    "pages/index/index",
+    "pages/kmap/index",
+    "pages/mine/index",
+    "pages/categatory/index"
+  ],
+  "subpackages": [
+    {
+      "root": "packageSong",
+      "pages": [
+        "pages/one/index",
+        "pages/categorySongList/index",
+        "pages/songDetail/index"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "position": "bottom",
+    "color": "#cccccc",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./static/image/nav-icon-home.png",
+        "selectedIconPath": "./static/image/nav-icon-home-active.png"
+      },
+      {
+        "pagePath": "pages/categatory/index",
+        "text": "分类",
+        "iconPath": "./static/image/nav-icon-category.png",
+        "selectedIconPath": "./static/image/nav-icon-category-active.png"
+      },
+      {
+        "pagePath": "pages/kmap/index",
+        "text": "地图",
+        "iconPath": "./static/image/nav-icon-laboratory.png",
+        "selectedIconPath": "./static/image/nav-icon-laboratory-active.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "./static/image/nav-icon-user.png",
+        "selectedIconPath": "./static/image/nav-icon-user-active.png"
+      }
+    ]
+  },
+  "debug": true,
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "requiredBackgroundModes": [
+    "audio",
+    "location"
+  ],
+  "sitemapLocation": "sitemap.json"
+}

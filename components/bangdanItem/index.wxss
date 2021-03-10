@@ -1,0 +1,40 @@
+.box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20rpx;
+  background-color: #cccccc;
+  margin-bottom: 20rpx;
+  border-radius: 16rpx;
+}
+.title{
+  font-size: 28rpx;
+  padding-bottom: 10rpx;
+}
+.content{
+  font-size: 24rpx;
+  display: flex;
+  padding:6rpx 0;
+  align-items: baseline;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 450rpx;
+}
+.ranks{
+  color:#000000;
+}
+.songTitle{
+  color:#272525d6;
+}
+.author{
+
+}
+.coverpic{
+  display:flex;
+}
+.picture{
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 0 16rpx 16rpx 0;
+}

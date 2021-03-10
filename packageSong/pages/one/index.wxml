@@ -1,0 +1,14 @@
+<view  class="container">
+  <view class="header">飙升榜</view>
+  <view class="list">
+    <block wx:for="{{list}}" wx:key="songId">
+      <view class="content" catchtap="clickSong" data-item="{{item}}">
+        <view class="rank">{{item.rank}}</view>
+        <view class="sings">
+          <view>{{item.title}}</view>
+          <view class="singerName">{{item.singerName}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

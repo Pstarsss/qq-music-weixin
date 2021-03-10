@@ -1,0 +1,5 @@
+<view class="container"> 
+  <block wx:for="{{categoryList}}" wx:key="id">
+    <categoryItem item="{{item}}"></categoryItem>  
+  </block>
+</view>

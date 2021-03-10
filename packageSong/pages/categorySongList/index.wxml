@@ -1,0 +1,30 @@
+<wxs module="number">
+  function getwang(num){
+    var temp = num.toString().split('');
+    temp.splice(temp.length - 3 , 3);
+    return temp.slice(0,temp.length - 1).join('') + '.' + temp[temp.length - 1] + '万';
+  }
+  function getNumber(num){
+    num = num.toString().length > 4 ? getwang(num) : num 
+    return num;
+  }
+  module.exports.getNumber = getNumber
+</wxs>
+<view class="container">
+  <view class="theme">{{categoryName}}</view>
+  <view class="list">
+    <block wx:for="{{songList}}" wx:key="dissid">
+      <view class="songitem" catchtap="onItemClick" data-item="{{item}}">
+        <view class="songcover">
+          <image class="songimg" src="{{item.imgurl}}" mode="aspectFit"></image>
+          <view class="songcount">
+            <text class="iconfont icon-icon_play sanjiao" ></text>
+            <view class="amount">{{number.getNumber(item.listennum)}}</view>
+          </view>
+        </view>
+        <view class="songname">{{item.dissname}}</view>
+        <view class="creatorname">{{item.creator.name}}</view>
+      </view>
+    </block>
+  </view>
+</view>

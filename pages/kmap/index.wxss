@@ -1,0 +1,35 @@
+.maps{
+  width: 100vw;
+  height: 500rpx;
+}
+.searchbox{
+  border-top: 0.5px solid #e0e0e0;
+  padding: 16rpx 32rpx;
+  display:flex;
+  align-items: center;
+}
+.search{
+  border-radius: 38rpx;
+  background-color: #F7F8FA;
+  display: flex;
+  align-items: center;
+  flex:1;
+}
+.search-icon{
+  padding:20rpx 16rpx 20rpx 32rpx;
+}
+.search-text{
+  flex: 1;
+  font-size: 28rpx;
+  padding-right: 32rpx;
+  font-weight: 400;
+}
+.search-btn{
+  width: 70rpx;
+  height: 40rpx;
+  text-align: center;
+  color: #ffffff;
+  background-color: #d4d433;
+  border-radius: 18rpx;
+  margin-left: 10rpx;
+}
