@@ -34,7 +34,19 @@ function pxshowErrorToast(text = '',duration = 2000){
   })
 }
 
+
+function getwang(num){
+  var temp = num.toString().split('');
+  temp.splice(temp.length - 3 , 3);
+  return temp.slice(0,temp.length - 1).join('') + '.' + temp[temp.length - 1] + '万';
+}
+function getNumber(num){
+  num = num.toString().length > 4 ? getwang(num) : num 
+  return num;
+}
+
 module.exports = {
   request,
-  pxshowErrorToast
+  pxshowErrorToast,
+  getwang
 }

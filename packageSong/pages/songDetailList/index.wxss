@@ -1,0 +1,6 @@
+@import '/utils/css/font.wxss';
+
+.songimg{
+  width: 300rpx;
+  height: 300rpx;
+}

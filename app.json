@@ -12,7 +12,8 @@
       "pages": [
         "pages/one/index",
         "pages/categorySongList/index",
-        "pages/songDetail/index"
+        "pages/songDetail/index",
+        "pages/songDetailList/index"
       ]
     }
   ],

@@ -96,6 +96,12 @@
           "pathName": "packageSong/pages/categorySongList/index",
           "query": "categoryId=6&categoryName=流行",
           "scene": null
+        },
+        {
+          "name": "分类歌单下的歌单详情",
+          "pathName": "packageSong/pages/songDetailList/index",
+          "query": "disstid=7087629538",
+          "scene": null
         }
       ]
     }

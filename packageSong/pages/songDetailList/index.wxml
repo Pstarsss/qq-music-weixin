@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="introduce">
+    <view class="imageText">
+        <view class="leftpart"> 
+          <image class="songimg" src="{{info.logo}}" mode="aspectFit"></image>
+          <view class="songcount">
+            <text class="iconfont icon-erji sanjiao" ></text>
+            <view class="amount">{{info.visitnum}}</view>
+          </view>
+        </view>
+        <view class="rightpart">
+          <view class="dissname">{{info.dissname}}</view>
+          <view class="nickname">{{info.nickname}}</view>
+          <view class="desc">简介: {{info.desc}}</view>
+        </view>
+    </view>
+    <!-- <view class="btn-function">
+      <view>收藏</view>
+      <view>评论</view>
+    </view> -->
+  </view>
+  <view class="songList">
+    
+  </view>
+</view>
