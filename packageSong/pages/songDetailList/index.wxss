@@ -1,6 +1,90 @@
 @import '/utils/css/font.wxss';
-
+.introduce{
+  padding: 20rpx 30rpx 40rpx;
+  background-image: linear-gradient( 45deg, rgb(50,56,88),rgb(66,79,113),rgb(97,121,170));
+}
 .songimg{
-  width: 300rpx;
-  height: 300rpx;
+  width: 230rpx;
+  border-radius: 30rpx;
+  box-shadow: 5px 0 2px rgb(50,56,88)
+}
+.imageText{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.leftpart{
+  position: relative;
+  display: flex;
+  margin: 10rpx 30rpx 10rpx 0;
+}
+.songcount{
+  position: absolute;
+  bottom: 0;
+  right: 7rpx;
+  background-color: #00000047;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 12rpx;
+}
+.sanjiao{
+  /* border: 12rpx solid;
+  border-color: transparent transparent transparent #fff;
+  border-radius: 5rpx; */
+  color: #fff;
+  font-size: 22rpx;
+  padding: 0 5rpx;
+}
+.amount{
+  font-size: 20rpx;
+  color: #fff;
+  padding-right: 5rpx;
+}
+.dissname{
+  font-size: 36rpx;
+  max-width: 360rpx;
+  color: #ffffffd4;
+  font-weight: 500;
+  padding-bottom:15rpx;
+}
+.nickname{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-bottom: 36rpx;
+}
+.userImg{
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+}
+.username{
+  padding-left: 20rpx;
+  font-size: 24rpx;
+  color: #ffffffd4;
+}
+.descbox{
+  display: flex;
+  align-items: center;
+}
+.desc{
+  font-size: 24rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 360rpx;
+  color: #ffffffd4;
+}
+
+.songItem{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.rank{
+  font-size:32rpx;
+}
+.songname{
+
 }

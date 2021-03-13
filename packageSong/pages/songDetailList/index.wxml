@@ -2,7 +2,7 @@
   <view class="introduce">
     <view class="imageText">
         <view class="leftpart"> 
-          <image class="songimg" src="{{info.logo}}" mode="aspectFit"></image>
+          <image class="songimg" src="{{info.logo}}" mode="widthFix"></image>
           <view class="songcount">
             <text class="iconfont icon-erji sanjiao" ></text>
             <view class="amount">{{info.visitnum}}</view>
@@ -10,16 +10,44 @@
         </view>
         <view class="rightpart">
           <view class="dissname">{{info.dissname}}</view>
-          <view class="nickname">{{info.nickname}}</view>
-          <view class="desc">简介: {{info.desc}}</view>
+          <view class="nickname">
+            <image class="userImg" src="{{info.headurl}}" mode="aspectFit"></image>
+            <view class="username">{{info.nickname}}</view>
+          </view>
+          <view class="descbox">
+            <view class="desc">
+              简介: {{info.desc}} 
+            </view>
+            <van-icon name="arrow" color="#ffffffd4" size="24rpx" />
+          </view>
         </view>
     </view>
     <!-- <view class="btn-function">
       <view>收藏</view>
       <view>评论</view>
+      <view></view>
     </view> -->
   </view>
   <view class="songList">
-    
+    <block wx:for="{{songlist}}" wx:key="id">
+      <view class="songItem">
+        <view class="rank">
+          {{index + 1}}
+        </view>
+        <view class="songname">
+          <view>
+            {{item.name}}
+          </view>
+          <view>
+            <view>
+              <view wx:for="{{item.singer}}" wx:for-item="iitem">{{iitem.name}}</view>
+            </view>
+            <view>{{item.album.name}}</view>
+          </view>
+        </view>
+        <van-icon name="play-circle-o" size="48rpx" />
+        <van-icon name="ellipsis" size="48rpx" />
+      </view>
+    </block>
   </view>
 </view>

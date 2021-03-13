@@ -1,0 +1,33 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1615637858618'); /* IE9 */
+  src: url('iconfont.eot?t=1615637858618#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAQoAAsAAAAACGAAAAPbAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDKgqEAINLATYCJAMUCwwABCAFhG0HUBtXB1GUzM0y2c8D23lK0BgSsYhsoRq018U3gsIh7008/Hfvv/vMzL2vFvufWqFqffmn9L48oKGEAhahChwPd4H3923aI1TIpy5c12oidMUin8RhCBWnK3qq+Z5M/SSiJwtswEEJBGSbn8TU3P9zzHRVAvlX6VJZlLjR3gDHAxpY1mXTid6BHJjfMrzWpXDQ1xNoWzYbcVlQVgeUgiwLxBuDTgVUxq00NIemUFfsLeIDOGqmd4rrAN4Hvx//ISYokioja6+e5Wsh6xe8W0nKdtlCDwGa6YKQD5GxAxTiVWX4CTIq7yC1zas5OAaamhK/4I3Hu5V2O2DctUdRNVrbR/jHyxJRI41dcAqVwi/gAoJf7uoqiwcEZc+lgYqEZ9pLG2PgI4AfQCgrOPtCSMSSEM3vKaUZdpnlRaN2VE20EDRyIqqRJ6KJNhrkgXVDfuzQUM8w3QGPcF0/KA/4tCBnujUTaB8eVhKQ2m3+llHZRxpYt7XHnx8aIqJjJ/HwIXu/OujUG/UwotJA7nlECOsfOCEVPrxde/hhxFaimr6XuH4GPvJg9oimIbGebWDZurp6rF66gNU01KvqUs+dJjUnJZ4+BqODOiJjh7iGXJ6X9MHF3lf67J7dX3yny5+yziba3v8N3i/zEndcrveO2Ub6a4Dd5UmK/qJm/29+Kype7Qd+b2G8Uj6GHimPK/XBisa+MYuCKiCpaAzW59c/QsfkTuEYos5m2+rnmyPbmMJXxOdmU+izAEmjWbcTEyrd+5ThAhrdwMjaeUluldoNUHh7MC3kULHDRan3cJJ1iio8RZS4XO7LYwnnyH1Pg+o2flNgBX4YtAAscJzMBiDvKXYDLOYAGRZU4yw5+4f/jU99Suq+e9pvqlPAT/GmGtILwnD1X9N01vxeTce+YumIpypGN1cbjZVLbryiprY2fmudsSfTWGedGwlNswSShiXImlaQBbsDlY59qDWdQNu2wsMdEyJSlBa2rEQQhnZB0vcdsqEbyIJ9DJW5z1AbBglt18L7zI61MKBcEaskrGXUrYxBw1s55pNQ2FyDdY1mlZjWBVQWizZDjomOiMrXCrEVi1NssDXpYiSJYziRtzAF6GbYbOYZQeSNWCNF6CVJSImM5Kq+KELDWwC5IMJUJJgWQ60Vw0CDZ8V5wyWo8PM1MJ1GZipiQ09TnoWJbAzjM6JFiOqALDRbO/XcyktsmujEkEg4DI6IZ8EoQEHMTMs8hlA9ywjTkETQDygKUkTiQVxXc8TyVss7HoE28pgqUuQoUUWt+QxbWwwqq84Bi0aD8hkmLRHMqlbKpucbNVUuAAA=') format('woff2'),
+  url('iconfont.woff?t=1615637858618') format('woff'),
+  url('iconfont.ttf?t=1615637858618') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1615637858618#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-fenxiang:before {
+  content: "\e600";
+}
+
+.icon-erji:before {
+  content: "\e885";
+}
+
+.icon-icon_play:before {
+  content: "\e610";
+}
+
+.icon-shoucang:before {
+  content: "\e60f";
+}
+
