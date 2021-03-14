@@ -76,7 +76,9 @@
   max-width: 360rpx;
   color: #ffffffd4;
 }
-
+.songList{
+  padding: 20rpx 32rpx 20rpx;
+}
 .songItem{
   display: flex;
   align-items: center;
@@ -84,7 +86,32 @@
 }
 .rank{
   font-size:32rpx;
+  width: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .songname{
+  width: 500rpx;
+}
+.song_name{
 
+}
+.singerabl{
+  display: flex;
+  max-width: 400rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.singerss{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.choose{
+  padding: 0 10rpx;
+}
+.play{
+  padding: 0 10rpx
 }
