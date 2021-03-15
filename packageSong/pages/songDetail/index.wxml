@@ -1,3 +1,9 @@
-<view>
-  
+<view class="container">
+  <view class="songInfo">
+      <view></view>
+      <view></view>
+  </view>
+  <view>
+    <image src="{{imageUrl}}"></image>
+  </view>
 </view>

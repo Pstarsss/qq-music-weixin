@@ -3,10 +3,6 @@ const api = require('../../../router/api');
 const util = require('../../../utils/util')
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
 
   },
@@ -17,9 +13,12 @@ Page({
   onLoad: function (e) {
     let that = this
     this.setData({
-      albumMid:e.albumMid
+      songmid:e.id
     },() => {
-      that.getAlbumInfo()
+      that.getSongInfo();
+      that.getLyric();
+      that.getMusicPlay();
+      that.getImageUrl();
     })
     const eventChannel = this.getOpenerEventChannel();
     eventChannel.on('songDetail',(res) => {
@@ -45,9 +44,23 @@ Page({
   onShareAppMessage: function () {
 
   },
-  async getAlbumInfo(){
-    let temp = await util.request(`${api.getAlbumInfo}?albummid=${this.data.albumMid}`,{},"get")
-    
+  async getSongInfo(){
+    let temp = await util.request(`${api.getSongInfo}?songmid=${this.data.songmid}`,{},"get");
+    console.log('getSongInfo',temp.data.response.songinfo)
+  },
+  async getMusicPlay(){
+    let temp = await util.request(`${api.getMusicPlay}?songmid=${this.data.songmid}&justPlayUrl=all`,{},"get");
+    console.log('getMusicPlay',temp.data.data.playUrl)
+  },
+  async getLyric(){
+    let temp = await util.request(`${api.getLyric}?songmid=${this.data.songmid}`,{},"get");
+    console.log('getLyric',temp.data.response.lyric)
+  },
+  async getImageUrl(){
+    let temp = await util.request(`${api.getImageUrl}?id=${this.data.songmid}`,{},"get");
+    console.log('getImageUrl',temp.data.response.data.imageUrl);
+    this.setData({
+      imageUrl:temp.data.response.data.imageUrl
+    })
   }
-
 })

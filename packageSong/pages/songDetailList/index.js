@@ -35,7 +35,7 @@ Page({
   onClickItem(e){
     let temp = e.currentTarget.dataset.item;
     wx.navigateTo({
-      url: `/packageSong/pages/songDetail/index?albumMid=${temp.mid}`,
+      url: `/packageSong/pages/songDetail/index?id=${temp.mid}`,
     })
   }
 })
