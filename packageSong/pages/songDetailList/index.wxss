@@ -81,7 +81,7 @@
 }
 .songItem{
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: space-around;
 }
 .rank{
@@ -92,7 +92,7 @@
   align-items: center;
 }
 .songname{
-  width: 500rpx;
+  width: 460rpx;
 }
 .song_name{
 

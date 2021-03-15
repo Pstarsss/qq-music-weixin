@@ -34,6 +34,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    song: '', // 全局中正在播放的音乐。
+    mv: '', // 全局中正在播放的mv
   }
 })

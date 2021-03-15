@@ -1,1 +1,4 @@
 /* packageSong/pages/songDetail/index.wxss */
+.lyric{
+  white-space:pre-wrap;
+}

@@ -3,7 +3,14 @@
       <view></view>
       <view></view>
   </view>
-  <view>
-    <image src="{{imageUrl}}"></image>
+  <view class="songBanner">
+    <image src="{{imageUrl}}" mode="aspectFit"></image>
   </view>
+  <view class="songAlbum">
+
+  </view>
+  <view class="lyric">
+    {{lyric}}
+  </view>
+  
 </view>
