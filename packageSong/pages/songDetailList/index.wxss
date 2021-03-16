@@ -1,7 +1,10 @@
 @import '/utils/css/font.wxss';
+.container{
+  background-image: linear-gradient( 45deg, rgb(50,56,88),rgb(66,79,113),rgb(97,121,170));
+}
 .introduce{
   padding: 20rpx 30rpx 40rpx;
-  background-image: linear-gradient( 45deg, rgb(50,56,88),rgb(66,79,113),rgb(97,121,170));
+  /* background-image: linear-gradient( 45deg, rgb(50,56,88),rgb(66,79,113),rgb(97,121,170)); */
 }
 .songimg{
   width: 230rpx;
@@ -81,8 +84,9 @@
 }
 .songItem{
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: space-around;
+  padding:20rpx 0;
 }
 .rank{
   font-size:32rpx;

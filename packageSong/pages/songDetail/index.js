@@ -75,7 +75,7 @@ Page({
     console.log('getLyric',temp.data.response.lyric);
     let songlyric = temp.data.response.lyric.replace(new RegExp(/\[(\S*)\]/g),'').trim();
     console.log('songlyric0:',songlyric)
-    // songlyric = songlyric.replace(/<[^<>]+>/g, '');
+    songlyric = songlyric.replace(/<[^<>]+>/g, '');
     // console.log('songlyric1:',songlyric)
     songlyric = songlyric.replace(/&nbsp;/ig, '').replace(/(\n[\s\t]*\r*\n)/g, '\n').replace(/^[\n\r\n\t]*|[\n\r\n\t]*$/g, '');
     console.log('songlyric2:',songlyric)
@@ -107,6 +107,27 @@ Page({
   changeSwiper(e){
     this.setData({
       currentIndex: e.detail.current
+    },() => {
+      this.getSwiperHieght()
     })
+  },
+  getSwiperHieght(){
+    let that = this;
+    let temp;
+    const query = wx.createSelectorQuery().in(this);
+    switch (this.data.currentIndex){
+      case 0 : temp = query.select('#song').boundingClientRect(function(res){
+        that.setData({
+          height: res.height
+        })
+      }).exec() 
+      break ;
+      case 1 : temp = query.select('#lyric').boundingClientRect(function(res){
+        that.setData({
+          height: res.height
+        })
+      }).exec() 
+      break ;
+    }
   }
 })

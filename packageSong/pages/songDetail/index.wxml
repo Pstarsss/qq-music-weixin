@@ -14,15 +14,15 @@
 </van-tabs>
 </view> -->
 <view class="container">
-  <van-sticky>
+  <van-sticky z-index="{{2}}">
     <view class="tabs" catchtap="changeIndex">
       <view class="{{currentIndex == 0 ? 'title-active-color' : 'title-inactive-color'}} tabItem" data-index="{{0}}">歌曲</view>
       <view class="{{currentIndex == 1 ? 'title-active-color' : 'title-inactive-color'}} tabItem " data-index="{{1}}" >歌词</view>
     </view>
   </van-sticky>
-  <swiper class="swiperclass" current="{{currentIndex}}" duration="{{500}}" bindchange="changeSwiper">
-    <swiper-item>
-      <view class="song">
+  <swiper class="swiperclass" style="height:{{height}}px;" current="{{currentIndex}}" duration="{{500}}" bindchange="changeSwiper">
+    <swiper-item >
+      <view id="song">
         <view class="songBanner">
           <image class="songBannerimage" src="{{imageUrl}}" mode="widthFix"></image>
         </view>
@@ -39,8 +39,20 @@
         </view> 
       </view>
     </swiper-item>
-    <swiper-item>
-      <view class="lyric">{{lyric}}</view>
+    <swiper-item >
+      <view id="lyric">
+        <view class="_lyric-header">
+          <view>{{songinfo.name}}</view>
+          <view class="_lyric-title">
+            <view class="_lyric-singer">
+             <view wx:for="{{songinfo.singer}}" wx:key="id">
+               {{item.name}}
+             </view>
+            </view>
+          </view>
+        </view>
+        <view class="_lyric-body">{{lyric}}</view>
+      </view>
     </swiper-item>
   </swiper>
 </view>

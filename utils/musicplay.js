@@ -1,13 +1,17 @@
 let globalData = getApp().globalData
-let innerAudioContext = wx.createInnerAudioContext() ;
+let innerAudioContext;
 
 function init(src){
+  if(globalData.src  && globalData.src != src){
+    destroy();
+  }
+  innerAudioContext = wx.createInnerAudioContext() ;
   innerAudioContext.autoplay = true;
   innerAudioContext.loop = true;
   innerAudioContext.volume = 0.5;
   innerAudioContext.src = src || '';
   globalData.src = src || '';
-  innerAudioContext.pause();
+  pause();
 }
 function play(){
   innerAudioContext.play();

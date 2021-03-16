@@ -1,13 +1,13 @@
 import regeneratorRuntime from 'regenerator-runtime'
-const util = require('../../../utils/util')
-const api = require('../../../router/api')
+const util = require('../../../utils/util');
+const api = require('../../../router/api');
+const music = require('../../../utils/musicplay');
 Page({
 
   data: {
     disstid: 0,
 
   },
-
   onLoad: function (options) {
     this.setData({
       disstid : options.disstid ? options.disstid : 0
@@ -37,5 +37,22 @@ Page({
     wx.navigateTo({
       url: `/packageSong/pages/songDetail/index?id=${temp.mid}&mid=${temp.album.mid}`,
     })
-  }
+  },
+  playMusic(e){
+    let temp = e.currentTarget.dataset.item;
+    this.getMusicPlay(temp.mid);
+  },
+  async getMusicPlay(songmid){
+    let temp = await util.request(`${api.getMusicPlay}?songmid=${songmid}&justPlayUrl=all`,{},"get");
+    this.setData({
+      playUrl:temp.data.data.playUrl[`${songmid}`].url
+    },() => {
+      if(!this.data.playUrl){
+        util.pxshowErrorToast('抱歉，暂无该歌曲资源',1000);
+        return ;
+      }
+      music.init(this.data.playUrl);
+      music.play();
+    })
+  },
 })

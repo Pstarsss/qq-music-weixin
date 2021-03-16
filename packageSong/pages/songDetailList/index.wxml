@@ -45,7 +45,7 @@
             <view>{{item.album.name}}</view>
           </view>
         </view>
-        <van-icon class="play" name="play-circle-o" size="48rpx" />
+        <van-icon data-item="{{item}}" catchtap="playMusic" class="play" name="play-circle-o" size="48rpx" />
         <van-icon class="choose" name="ellipsis" size="48rpx" />
       </view>
     </block>
