@@ -1,6 +1,6 @@
 
-<view class="container">
-  <van-tabs type="card" border="false" color="transparent" title-inactive-color="rgb(32,32,32)" title-active-color="rgb(198,198,198)">
+<!-- <view class="container">
+  <van-tabs type="card" border="false" color="rgb(32,32,32)" title-inactive-color="rgb(198,198,198)" title-active-color="rgb(32,32,32)">
   <van-tab title="歌曲">
     <view class="songBanner">
       <image src="{{imageUrl}}" mode="aspectFit"></image>
@@ -12,4 +12,62 @@
     </view>
   </van-tab>
 </van-tabs>
+</view> -->
+<view class="container">
+  <van-sticky>
+    <view class="tabs" catchtap="changeIndex">
+      <view class="{{currentIndex == 0 ? 'title-active-color' : 'title-inactive-color'}} tabItem" data-index="{{0}}">歌曲</view>
+      <view class="{{currentIndex == 1 ? 'title-active-color' : 'title-inactive-color'}} tabItem " data-index="{{1}}" >歌词</view>
+    </view>
+  </van-sticky>
+  <swiper class="swiperclass" current="{{currentIndex}}" duration="{{500}}" bindchange="changeSwiper">
+    <swiper-item>
+      <view class="song">
+        <view class="songBanner">
+          <image class="songBannerimage" src="{{imageUrl}}" mode="widthFix"></image>
+        </view>
+        <view class="songname_singer">
+          <view>{{songinfo.name}}</view>
+          <view class="songname_title">
+            <!-- <view>{{songinfo.title}}</view> -->
+            <view class="singer_list">
+             <view wx:for="{{songinfo.singer}}" wx:key="id">
+               {{item.name}}
+             </view>
+            </view>
+          </view>
+        </view> 
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="lyric">{{lyric}}</view>
+    </swiper-item>
+  </swiper>
 </view>
+<view class="">
+
+</view>
+
+<!-- <view class="album">
+<view class="pub_time">
+  <view>{{songinfo.name}}</view>
+  <view>
+    <view>{{songinfo.time_public}}</view>
+    <view>歌曲详情 <van-icon name="arrow" color="rgb(114,114,114)" size="32rpx" /></view>
+  </view>
+</view>
+<view class="song_info">
+  <view class="singer_module">
+    <view class="key">歌手 :</view>
+    <view class="singerList">
+      <view class="key_value" wx:for="{{songinfo.singer}}" wx:key="id">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+  <view class="album_module">
+    <view class="key">专辑 :</view>
+    <view class="key_value">{{songinfo.album.name}}</view>
+  </view>
+</view>
+</view> -->

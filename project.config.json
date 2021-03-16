@@ -102,6 +102,12 @@
           "pathName": "packageSong/pages/songDetailList/index",
           "query": "disstid=7081601102",
           "scene": null
+        },
+        {
+          "name": "无人之岛",
+          "pathName": "packageSong/pages/songDetail/index",
+          "query": "id=000zHfWw3pvMK5&mid=001Ta09h1RG6lc",
+          "scene": null
         }
       ]
     }
