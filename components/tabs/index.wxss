@@ -1,0 +1,271 @@
+.promotion-popup {}
+
+.wrapper {
+  padding: 80rpx 50rpx 50rpx 50rpx;
+}
+
+.wrapper .pro-good {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.wrapper .pro-good .good-pic {
+  width: 166rpx;
+  height: 162rpx;
+}
+
+.wrapper .pro-good .good-info {
+  padding-left: 36rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+
+.wrapper .pro-good .good-info .name {
+  font-size: 32rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #3D3D3D;
+}
+
+.wrapper .pro-good .good-info .memberprice {
+  padding-top: 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.wrapper .pro-good .good-info .memberprice .member-price {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: 400;
+  color: rgba(61, 61, 61, 1);
+}
+
+.wrapper .pro-good .good-info .memberprice .researcher {
+  height: 28rpx;
+  line-height: 28rpx;
+  border-radius: 14rpx;
+  font-size: 18rpx;
+  font-family: PingFang-SC-Regular, PingFang-SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  background-color: #3d3d3d;
+  padding: 0 10rpx;
+  margin-left: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pro-good .good-info .price {
+  padding-top: 10rpx;
+}
+
+.pro-good .good-info .price .standard-price {
+  font-size: 42rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: var(--theme-color);
+  line-height: 40rpx;
+}
+
+.pro-good .good-info .price .market-price {
+  text-decoration: line-through;
+  font-size: 20rpx;
+  font-family: PingFang-SC-Regular, PingFang-SC;
+  font-weight: 400;
+  color: rgba(155, 155, 155, 1);
+  line-height: 14px;
+  padding-left: 10rpx;
+}
+
+.wrapper .pro-tip {
+  padding: 24rpx 0;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #3D3D3D;
+  margin-top: 30rpx;
+}
+
+.wrapper .pro-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.wrapper .pro-list .item {
+  padding: 10rpx;
+  font-size: 24rpx;
+  color: #282828;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.wrapper .pro-list .item .radio-outside {
+  width: 26rpx;
+  height: 26rpx;
+  border: 2rpx #FF6419 solid;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.wrapper .pro-list .item .radio-inner {
+  width: 22rpx;
+  height: 22rpx;
+  background-color: var(--theme-color);
+  border-radius: 50%;
+}
+.text{
+  flex: 1;
+  padding-left: 10rpx;
+}
+.confirm-btn{
+  width: 100%;
+  margin-top: 50rpx;
+}.promotion-popup {}
+
+.wrapper {
+  padding: 80rpx 50rpx 50rpx 50rpx;
+}
+
+.wrapper .pro-good {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.wrapper .pro-good .good-pic {
+  width: 166rpx;
+  height: 162rpx;
+}
+
+.wrapper .pro-good .good-info {
+  padding-left: 36rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+
+.wrapper .pro-good .good-info .name {
+  font-size: 32rpx;
+  font-family: PingFang-SC-Medium, PingFang-SC;
+  font-weight: 500;
+  color: #3D3D3D;
+}
+
+.wrapper .pro-good .good-info .memberprice {
+  padding-top: 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.wrapper .pro-good .good-info .memberprice .member-price {
+  font-size: 24rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: 400;
+  color: rgba(61, 61, 61, 1);
+}
+
+.wrapper .pro-good .good-info .memberprice .researcher {
+  height: 28rpx;
+  line-height: 28rpx;
+  border-radius: 14rpx;
+  font-size: 18rpx;
+  font-family: PingFang-SC-Regular, PingFang-SC;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 1);
+  background-color: #3d3d3d;
+  padding: 0 10rpx;
+  margin-left: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pro-good .good-info .price {
+  padding-top: 10rpx;
+}
+
+.pro-good .good-info .price .standard-price {
+  font-size: 42rpx;
+  font-family: PingFangSC-Semibold, PingFang SC;
+  font-weight: 600;
+  color: var(--theme-color);
+  line-height: 40rpx;
+}
+
+.pro-good .good-info .price .market-price {
+  text-decoration: line-through;
+  font-size: 20rpx;
+  font-family: PingFang-SC-Regular, PingFang-SC;
+  font-weight: 400;
+  color: rgba(155, 155, 155, 1);
+  line-height: 14px;
+  padding-left: 10rpx;
+}
+
+.wrapper .pro-tip {
+  padding: 24rpx 0;
+  font-size: 24rpx;
+  font-family: PingFang-SC-Bold, PingFang-SC;
+  font-weight: bold;
+  color: #3D3D3D;
+  margin-top: 30rpx;
+}
+
+.wrapper .pro-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.wrapper .pro-list .item {
+  padding: 10rpx;
+  font-size: 24rpx;
+  color: #282828;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.wrapper .pro-list .item .radio-outside {
+  width: 26rpx;
+  height: 26rpx;
+  border: 2rpx #FF6419 solid;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.wrapper .pro-list .item .radio-inner {
+  width: 22rpx;
+  height: 22rpx;
+  background-color: var(--theme-color);
+  border-radius: 50%;
+}
+.text{
+  flex: 1;
+  padding-left: 10rpx;
+}
+.confirm-btn{
+  width: 100%;
+  margin-top: 50rpx;
+}

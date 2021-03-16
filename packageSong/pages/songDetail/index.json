@@ -1,4 +1,7 @@
 {
   "navigationBarTitleText": "歌曲",
-  "usingComponents": {}
+  "usingComponents": {
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index"
+  }
 }

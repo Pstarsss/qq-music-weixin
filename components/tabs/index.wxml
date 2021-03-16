@@ -1,0 +1,27 @@
+<view class="weui-tabs">
+	<mp-sticky bindscroll="handleScroll" offsetTop="{{menuButtonBoundingClientRect.bottom + 10}}">
+		<view class="weui-tabs-bar__wrp {{isFixed?'fixed':''}}">
+			<scroll-view scroll-x scroll-into-view="item_{{currentView}}" scroll-with-animation="{{true}}">
+				<view class="weui-tabs-bar__content">
+					<block wx:for="{{tabs}}" wx:key="categoryId">
+						<view id="item_{{index}}" class="weui-tabs-bar__item"
+							style="background-color: {{tabBackgroundColor}}; color: {{activeTab === index ? tabActiveTextColor : tabInactiveTextColor}};"
+							bindtap="handleTabClick" data-index="{{index}}">
+							<view class="weui-tabs-bar__title {{activeTab === index ? 'tab-bar-title__selected' : ''}}">
+								<text class="weui-tabs-bar__title__text">{{item.name}}</text>
+							</view>
+						</view>
+					</block>
+				</view>
+			</scroll-view>
+		</view>
+	</mp-sticky>
+	<swiper class="{{swiperClass}}" current="{{activeTab}}" duration="{{duration}}" bindchange="handleSwiperChange"
+		bindanimationfinish="handleAnimationFinish" style='height:{{swiper_height}}px;min-height:{{swiper_minheight}}px;'>
+		<swiper-item wx:for="{{tabs}}" wx:key="categoryId">
+			<view class="swiper-item-cls tab-content_box-{{index}}">
+				<slot name="tab-content-{{index}}"></slot>
+			</view>
+		</swiper-item>
+	</swiper>
+</view>

@@ -1,16 +1,15 @@
-<view class="container">
-  <view class="songInfo">
-      <view></view>
-      <view></view>
-  </view>
-  <view class="songBanner">
-    <image src="{{imageUrl}}" mode="aspectFit"></image>
-  </view>
-  <view class="songAlbum">
 
-  </view>
-  <view class="lyric">
-    {{lyric}}
-  </view>
-  
+<view class="container">
+  <van-tabs type="card" border="false" color="transparent" title-inactive-color="rgb(32,32,32)" title-active-color="rgb(198,198,198)">
+  <van-tab title="歌曲">
+    <view class="songBanner">
+      <image src="{{imageUrl}}" mode="aspectFit"></image>
+    </view>
+  </van-tab>
+  <van-tab title="歌词">
+    <view class="lyric">
+      {{lyric}}
+    </view>
+  </van-tab>
+</van-tabs>
 </view>

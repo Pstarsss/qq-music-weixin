@@ -2,3 +2,7 @@
 .lyric{
   white-space:pre-wrap;
 }
+.container{
+  background:#ffffff;
+}
+
