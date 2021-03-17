@@ -7,9 +7,9 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 20rpx 40rpx;
   color:#ffffff40;
   font-size: 28rpx;
+  height: 120rpx;
 }
 
 .title-active-color{
@@ -17,8 +17,7 @@
 }
 .swiperclass{
   width: 100vw;
-  min-height: 100vh;
-  padding-top: 20rpx;
+  height: calc( 100vh - 120rpx );
 }
 #song{
   display: flex;
@@ -54,13 +53,38 @@
 }
 
 #lyric{
-  padding-left: 150rpx;
+  height: calc( 100vh - 120rpx );
+  padding-left: 120rpx;
   line-height: 60rpx;
-  padding-bottom: 100rpx;
   color:#ffffff8c;
+  overflow: hidden;
+  position: relative;
+}
+._lyric-header{
+  height: 150rpx;
+}
+._lyric-header-name{
+  font-size: 44rpx;
+}
+._lyric-singer{
+  font-size: 22rpx;
+}
+._lyric-container{
+  height: calc( 100vh - 270rpx );
+  position: relative;
+  overflow: scroll;
+  scrollbar-width: none; /* firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+._lyric-container::-webkit-scrollbar{
+  display: none; /* Chrome Safari */
 }
 ._lyric-body{
   white-space:pre-wrap;
+  font-size: 30rpx;
+  overflow: scroll;
+  position: absolute;
+  transition: all 0.3s;
 }
 
 

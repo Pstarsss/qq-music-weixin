@@ -20,7 +20,7 @@
       <view class="{{currentIndex == 1 ? 'title-active-color' : 'title-inactive-color'}} tabItem " data-index="{{1}}" >歌词</view>
     </view>
   </van-sticky>
-  <swiper class="swiperclass" style="height:{{height}}px;" current="{{currentIndex}}" duration="{{500}}" bindchange="changeSwiper">
+  <swiper class="swiperclass" current="{{currentIndex}}" duration="{{500}}" bindchange="changeSwiper">
     <swiper-item >
       <view id="song">
         <view class="songBanner">
@@ -42,7 +42,7 @@
     <swiper-item >
       <view id="lyric">
         <view class="_lyric-header">
-          <view>{{songinfo.name}}</view>
+          <view class="_lyric-header-name" >{{songinfo.name}}</view>
           <view class="_lyric-title">
             <view class="_lyric-singer">
              <view wx:for="{{songinfo.singer}}" wx:key="id">
@@ -51,7 +51,9 @@
             </view>
           </view>
         </view>
-        <view class="_lyric-body">{{lyric}}</view>
+        <view class="_lyric-container">
+          <view class="_lyric-body" style="height:{{height}}px">{{lyric}}</view>
+        </view>
       </view>
     </swiper-item>
   </swiper>

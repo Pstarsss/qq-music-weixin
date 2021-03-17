@@ -7,6 +7,7 @@ const globalData = app.globalData
 Page({
   data: {
     currentIndex: 0,
+    height: 1200,
   },
 
   /**
@@ -36,19 +37,14 @@ Page({
     eventChannel.off('songDetail');
   },
   onPullDownRefresh: function () {
-
+    this.get_lyricheight();
   },
-
-  onReachBottom: function () {
-
-  },
-
   onShareAppMessage: function () {
 
   },
   bofang(){
     music.init(this.data.playUrl);
-    // music.play();
+    music.play();
   },
   async getSongInfo(){
     let temp = await util.request(`${api.getSongInfo}?songmid=${this.data.songmid}`,{},"get");
@@ -72,13 +68,10 @@ Page({
   },
   async getLyric(){
     let temp = await util.request(`${api.getLyric}?songmid=${this.data.songmid}`,{},"get");
-    console.log('getLyric',temp.data.response.lyric);
+
     let songlyric = temp.data.response.lyric.replace(new RegExp(/\[(\S*)\]/g),'').trim();
-    console.log('songlyric0:',songlyric)
     songlyric = songlyric.replace(/<[^<>]+>/g, '');
-    // console.log('songlyric1:',songlyric)
     songlyric = songlyric.replace(/&nbsp;/ig, '').replace(/(\n[\s\t]*\r*\n)/g, '\n').replace(/^[\n\r\n\t]*|[\n\r\n\t]*$/g, '');
-    console.log('songlyric2:',songlyric)
     let songTime = temp.data.response.lyric.match(new RegExp(/\[(\S*)\]/g));
     songTime.splice(0,4)
     this.setData({
@@ -102,32 +95,27 @@ Page({
   changeIndex(e){
     this.setData({
       currentIndex: e.target.dataset.index
+    },() => {
+      if(this.data.currentIndex === 1){
+        wx.nextTick(() => {
+          this.get_lyricheight();
+        })
+      }
     })
   },
   changeSwiper(e){
     this.setData({
       currentIndex: e.detail.current
-    },() => {
-      this.getSwiperHieght()
     })
   },
-  getSwiperHieght(){
+  get_lyricheight(){
     let that = this;
     let temp;
     const query = wx.createSelectorQuery().in(this);
-    switch (this.data.currentIndex){
-      case 0 : temp = query.select('#song').boundingClientRect(function(res){
-        that.setData({
-          height: res.height
-        })
-      }).exec() 
-      break ;
-      case 1 : temp = query.select('#lyric').boundingClientRect(function(res){
-        that.setData({
-          height: res.height
-        })
-      }).exec() 
-      break ;
-    }
+    query.select('._lyric-body').boundingClientRect(function(res){
+      that.setData({
+        height:res.height + 60
+      })
+    }).exec();
   }
 })
