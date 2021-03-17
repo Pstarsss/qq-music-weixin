@@ -1,7 +1,7 @@
 import regeneratorRuntime from 'regenerator-runtime'
-const util = require('../../../utils/util');
-const api = require('../../../router/api');
-const music = require('../../../utils/musicplay');
+const util = require('../../utils/util');
+const api = require('../../router/api');
+const music = require('../../utils/musicplay');
 
 Component({
   /**
@@ -34,10 +34,11 @@ Component({
     imageUrl:''
   },
   lifetimes:{
-    ready(){
-      this.getMusicPlay();
-      this.getImageUrl();
-    }
+    
+    // ready(){
+    //   this.getMusicPlay();
+    //   this.getImageUrl();
+    // }
   },
   /**
    * 组件的方法列表
