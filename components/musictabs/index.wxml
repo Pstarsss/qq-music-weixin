@@ -1,2 +1,5 @@
-<!--components/musictabs/index.wxml-->
-<text>components/musictabs/index.wxml</text>
+<view class="playbar">
+  <view class="">
+    
+  </view>
+</view>

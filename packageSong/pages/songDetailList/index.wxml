@@ -51,3 +51,4 @@
     </block>
   </view>
 </view>
+<musictab show="{{showMusicbar}}" songmid="{{songmid}}" albummid="{{albummid}}" songinfo="{{songinfo}}"></musictab>
