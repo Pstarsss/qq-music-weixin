@@ -1,5 +1,5 @@
-// let defaultUrl = 'http://192.168.43.166:3200';
-let defaultUrl = 'http://172.16.67.40:3200';
+let defaultUrl = 'http://192.168.43.166:3200';
+// let defaultUrl = 'http://172.16.67.40:3200';
 
 
 module.exports = {
