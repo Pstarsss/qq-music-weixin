@@ -2,12 +2,16 @@ import regeneratorRuntime from 'regenerator-runtime'
 const api = require('../../../router/api');
 const util = require('../../../utils/util');
 const music = require('../../../utils/musicplay');
+const fire = require('../../../utils/onfire');
 const app = getApp();
 const globalData = app.globalData
 Page({
   data: {
     currentIndex: 0,
     height: 1200,
+    currentTime:0,
+    step:0,
+    max:100,
   },
 
   /**
@@ -24,6 +28,15 @@ Page({
       that.getMusicPlay();
       that.getImageUrl();
       // that.getAlbumInfo();
+    });
+    this.playingTime = fire.on('playingTime',(res) => {
+      this.setData({
+        currentTime_copy:res,
+        duration:util.timeformat(res.duration),
+        currentTime: util.timeformat(res.currentTime),
+        step:(res.currentTime).toFixed(0),
+        max: res.duration.toFixed(0)
+      })
     })
   },
   onUnload: function () {
@@ -37,7 +50,6 @@ Page({
   },
   bofang(){
     let result = music.init(this.data.playUrl);
-    console.log(result)
     this.setData({
       song:result
     });

@@ -43,6 +43,8 @@
                 <slider style="margin:0;"
                 bindchange="sliderchange"
                 bindchanging="sliderchanging" left-icon="cancel"  right-icon="success_no_circle"
+                value="{{step}}"
+                max="{{max}}"
                 activeColor="#fff"
                 block-size="12"
                 backgroundColor="rgb(80,80,80)"
@@ -53,6 +55,9 @@
                 </view>
             </view>
         </view>
+        </view>
+        <view class="song_function">
+          
         </view>
       </view>
     </swiper-item>

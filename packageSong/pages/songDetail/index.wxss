@@ -54,14 +54,11 @@
 .song_progress{
   width: calc( 100vw - 100rpx );
 }
-.progress_x{
-  width: 100%;
-  border-radius: 10rpx;
-  background-color: #cccccc73;
-  height: 12rpx;
-}
-.progress_ball{
-  
+
+.progress_time{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #lyric{

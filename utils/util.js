@@ -45,8 +45,33 @@ function getNumber(num){
   return num;
 }
 
+
+// 时间转为  00:00;
+// 传入时间 一小时内
+function timeformat(time){
+  if(Object.prototype.toString.call(time) != '[object Number]'){
+    return false;
+  }
+  time = time.toFixed(0);
+  let minutes = 0;
+  let seconds = 0;
+  // let temp = time >= 60 ? minutes = (time/60).toFixed(0) : seconds = time;
+  if(time >= 60){
+    minutes = (time / 60).toFixed(0);
+    seconds = (time % 60);
+  } else {
+    seconds = time
+  }
+  return `${addzero(minutes)}:${addzero(seconds)}`;
+}
+
+function addzero(time){
+  return time >= 10 ? time : '0' + time
+}
+
 module.exports = {
   request,
   pxshowErrorToast,
-  getwang
+  getwang,
+  timeformat
 }
