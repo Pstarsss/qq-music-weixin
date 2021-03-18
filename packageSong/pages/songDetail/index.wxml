@@ -37,6 +37,23 @@
             </view>
           </view>
         </view> 
+        <view class="song_progress">
+          <view class="section section_gap">
+            <view class="body-view">
+                <slider style="margin:0;"
+                bindchange="sliderchange"
+                bindchanging="sliderchanging" left-icon="cancel"  right-icon="success_no_circle"
+                activeColor="#fff"
+                block-size="12"
+                backgroundColor="rgb(80,80,80)"
+                />
+                <view class="progress_time">
+                  <view>{{currentTime}}</view>
+                  <view>{{duration}}</view>
+                </view>
+            </view>
+        </view>
+        </view>
       </view>
     </swiper-item>
     <swiper-item >

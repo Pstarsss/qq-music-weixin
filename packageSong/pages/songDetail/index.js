@@ -23,18 +23,11 @@ Page({
       that.getLyric();
       that.getMusicPlay();
       that.getImageUrl();
-      that.getAlbumInfo();
-    })
-    const eventChannel = this.getOpenerEventChannel();
-    eventChannel.on('songDetail',(res) => {
-      that.setData({
-        topListinfo: res.data
-      })
+      // that.getAlbumInfo();
     })
   },
   onUnload: function () {
-    const eventChannel = this.getOpenerEventChannel();
-    eventChannel.off('songDetail');
+    
   },
   onPullDownRefresh: function () {
     this.get_lyricheight();
@@ -43,7 +36,11 @@ Page({
 
   },
   bofang(){
-    music.init(this.data.playUrl);
+    let result = music.init(this.data.playUrl);
+    console.log(result)
+    this.setData({
+      song:result
+    });
     music.play();
   },
   async getSongInfo(){
@@ -117,5 +114,11 @@ Page({
         height:res.height + 60
       })
     }).exec();
+  },
+  sliderchange(e){
+    console.log("sliderchange:",e.detail);
+  },
+  sliderchanging(e){
+    console.log('sliderchanging:',e)
   }
 })

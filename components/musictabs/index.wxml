@@ -1,5 +1,15 @@
-<view class="playbar">
+<view class="playbar" style="opacity: {{opacity}};">
   <view class="">
-    
+      <text class="iconfont icon-cd playbar_cd"></text>
   </view>
+  <view class="_playbar_text">
+    <view class="_playbar_name">{{songinfo.name}} -</view>
+    <view class="_playbar_singer">
+      <block wx:for="{{songinfo.singer}}" wx:key="id">
+        <view>{{item.name}}</view>
+      </block>
+    </view>
+
+  </view>
+  <image src="{{imageUrl}}" class="_playbar_img" mode="aspectFit"></image>
 </view>

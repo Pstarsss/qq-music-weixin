@@ -6,7 +6,7 @@ Page({
 
   data: {
     disstid: 0,
-
+    opacity: 0
   },
   onLoad: function (options) {
     this.setData({
@@ -45,6 +45,11 @@ Page({
       albummid: temp.album.mid,
       songinfo: temp,
       showMusicbar: true
+    },() => {
+      this.selectComponent('#music').init();
+      this.setData({
+        opacity:1
+      })
     })
   },
   async getMusicPlay(){

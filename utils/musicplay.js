@@ -2,7 +2,7 @@ let globalData = getApp().globalData
 let innerAudioContext;
 
 function init(src){
-  if(globalData.src  && globalData.src != src){
+  if(globalData.src && globalData.src != src){
     destroy();
   }
   innerAudioContext = wx.createInnerAudioContext() ;
@@ -11,7 +11,9 @@ function init(src){
   innerAudioContext.volume = 0.5;
   innerAudioContext.src = src || '';
   globalData.src = src || '';
+  globalData.innerAudioContext = innerAudioContext
   pause();
+  return innerAudioContext;
 }
 function play(){
   innerAudioContext.play();

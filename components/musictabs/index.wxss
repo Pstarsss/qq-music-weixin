@@ -1,1 +1,58 @@
-/* components/musictabs/index.wxss */
+/* @import '/utils/css/iconfont.wxss'; */
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1616037636879'); /* IE9 */
+  src: url('iconfont.eot?t=1616037636879#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAKUAAsAAAAABlQAAAJKAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCCcApkcQE2AiQDCAsGAAQgBYRtBywbkwXIrrBxDaRINUzDsoPgoK82eHCACKK1snq294FZvgS2H0JHCj3bqESoKBtFwgBJICNu/+cyB2hUnj+WpwhGYIv5BU4zcuz0lNkcgXBrhAWQej0AAjoKJnIBYyDQdsMXHJ4B19RPoAf5xQHNrZOikiMBJzjQDlyTbSBD3zB2wQs8T6DNlJbC0WL7GOqSPS0QdzzHgHohKCXLtAhNDWtTvFRrKc/LE/Ai+n78N4g6RV2xa07fntsw+vXAyameNXQ9IIQIaHONChtAEucbkydKgnElbdvL5oCUgl8axw5xVKtgf51d3gEmYCr4xVM8ankBmaRHgHXM5kNKR8fDlx/nP/y88On3pY+/rr/9OPeWbz7MFnL9pVzlT8cyo6/Kcj+eXi4rtWfYj1Rr/0xwHK/ea91bY4Lv/ySc0DCheoaWnbmCnyIf2JWG0raX1OSN7mJk0tSCNm1ogL19/qaaBu8gG1oM3oe72WSGSosFMtkN1NptokmLXbRZt9zcrh8riWzFmgeA0OMRRZfXqPR4JpP9RW3IP5r0RAltLkb/nu2WwmseMhlCNppX6FlJrFynNOPKQ3LOQoPzyog/Jc69CPY7vXJmSTHxEgvyc2cgolBxEuECXEZhmGDKiU+WdFyRdNjtqqY3dawkgqZDjBgEsSHTFeSxJGIqGCyalc8fIo4zIQN31NUlTxGW84ZHfR29AeRSFw+qe5RrcuccA0IoSGGJCFqAUSQUSqC0eZSPWESHOyGeGuo6/dRQXWd7Q/QDpawJ21zCKayUGzYA') format('woff2'),
+  url('iconfont.woff?t=1616037636879') format('woff'),
+  url('iconfont.ttf?t=1616037636879') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1616037636879#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-cd:before {
+  content: "\e670";
+}
+.playbar{
+  width: calc( 100vw - 100rpx );
+  position: fixed;
+  bottom:0;
+  display: flex;
+  align-items: center;
+  background-color: rgb(183,193,206);
+  border-radius: 50rpx;
+  transition: all 0.3s;
+  margin-left: 50rpx;
+}
+.playbar_cd {
+  color: rgba(22, 22, 22, 0.86);
+  font-size: 83rpx;
+  padding-left: 28px;
+}
+._playbar_img{
+  position: absolute;
+  left: 0;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 10rpx;
+}
+._playbar_text{
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
+  font-size: 28rpx;
+}
+._playbar_name{
+  padding-right: 10rpx;
+}
+._playbar_singer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
