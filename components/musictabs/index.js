@@ -34,22 +34,21 @@ Component({
   data: {
     playUrl:'',
     imageUrl:'',
-    step:0
+    step:0,
+    played:true
   },
   lifetimes:{
-    ready(){
-      this.playingTime = fire.on('playingTime',(res) => {
-        this.setData({
-          currentTime_copy:res,
-          duration:util.timeformat(res.duration),
-          currentTime: util.timeformat(res.currentTime),
-          step:((res.currentTime).toFixed(0) / res.duration.toFixed(0)) * 100,
-          max: res.duration.toFixed(0)
-        },() => {
-          console.log(this.data.step);
-        })
-      })
-    }
+    // ready(){
+    //   this.playingTime = fire.on('playingTime',(res) => {
+    //     this.setData({
+    //       currentTime_copy:res,
+    //       duration:util.timeformat(res.duration),
+    //       currentTime: util.timeformat(res.currentTime),
+    //       step:((res.currentTime).toFixed(0) / res.duration.toFixed(0)) * 100,
+    //       max: res.duration.toFixed(0)
+    //     })
+    //   })
+    // }
   },
   /**
    * 组件的方法列表
@@ -60,6 +59,9 @@ Component({
       this.getImageUrl();
     },
     async getMusicPlay(){
+      if(this.data.songmid == globalData.song){
+        return ;
+      }
       let temp = await util.request(`${api.getMusicPlay}?songmid=${this.data.songmid}&justPlayUrl=all`,{},"get");
       this.setData({
         playUrl:temp.data.data.playUrl[`${this.data.songmid}`].url
@@ -68,6 +70,7 @@ Component({
           util.pxshowErrorToast('抱歉，暂无该歌曲资源',1000);
           return ;
         }
+        globalData.song = this.data.songmid;
         music.init(this.data.playUrl);
         music.play();
       })
@@ -78,6 +81,17 @@ Component({
       this.setData({
         imageUrl:temp.data.response.data.imageUrl
       })
-    }
+    },
+    onChangeStatus(){
+      console.log(this.data.played);
+      this.setData({
+        played: !this.data.played
+      })
+    },
+    onClickItem(e){
+      wx.navigateTo({
+        url: `/packageSong/pages/songDetail/index?id=${this.data.songmid}&mid=${this.data.albummid}`,
+      })
+    },
   }
 })  

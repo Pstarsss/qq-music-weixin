@@ -30,7 +30,7 @@
   </view>
   <view class="songList">
     <block wx:for="{{songlist}}" wx:key="id">
-      <view class="songItem" catchtap="onClickItem" data-item="{{item}}">
+      <view class="songItem" catchtap="onClickItem" data-item="{{item}}" data-index="{{index}}">
         <view class="rank">
           {{index + 1}}
         </view>
@@ -40,7 +40,8 @@
           </view>
           <view class="singerabl">
             <view class="singerss">
-              <view wx:for="{{item.singer}}" wx:key="id"  wx:for-item="iitem">{{iitem.name}}</view>
+              <view wx:for="{{item.singer}}" wx:key="id"  wx:for-item="iitem"
+              wx:for-index="iindex">{{iindex == 0 ? "":"-"}}{{iitem.name}}</view>
             </view>
             <view>{{item.album.name}}</view>
           </view>

@@ -1,4 +1,4 @@
-<view class="playbar" style="opacity: {{opacity}};">
+<view class="playbar" style="opacity: {{opacity}};" catchtap="onClickItem">
   <view class="">
       <text class="iconfont icon-cd playbar_cd"></text>
   </view>
@@ -6,11 +6,13 @@
     <view class="_playbar_name">{{songinfo.name}} -</view>
     <view class="_playbar_singer">
       <block wx:for="{{songinfo.singer}}" wx:key="id">
-        <view>{{item.name}}</view>
+        <view>{{index == 0 ? "":"-"}}{{item.name}}</view>
       </block>
     </view>
-    <view class="circle-progress">
-      <van-circle value="{{ step }}" size="30" layer-color="rgb(50,50,50)" color="#fff" />
+    <view class="circle-progress" catchtap="onChangeStatus">
+      <!-- <van-circle value="{{ step }}" size="30" layer-color="rgb(50,50,50)" color="#fff" stroke-width="3" /> -->
+      <van-icon wx:if="{{played}}" data-item="{{item}}" catchtap="playMusic" class="play" name="play-circle-o" size="48rpx" />
+      <van-icon wx:else name="pause-circle-o" />
     </view>
 
   </view>

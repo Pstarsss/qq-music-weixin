@@ -1,19 +1,40 @@
 import regeneratorRuntime from 'regenerator-runtime'
 const util = require('../../../utils/util');
 const api = require('../../../router/api');
+const globalData = getApp().globalData
 
 Page({
 
   data: {
     disstid: 0,
-    opacity: 0
+    opacity: 0,
+    index:0,
   },
   onLoad: function (options) {
+    let that = this;
     this.setData({
       disstid : options.disstid ? options.disstid : 0
     },() => {
       this.getDetailSongList();
     });
+    this.endMusic = fire.on('endMusic',() => {
+      if((this.data.songlist.length - 1 ) == this.data.index){
+        that.setData({
+          index : 0,
+          info: that.data.songlist[0]
+        })
+      } else {
+        this.setData({
+          index: this.data.index + 1,
+          info: that.data.songlist[this.data.index + 1]
+        })
+      }
+      that.getMusicPlay();
+      that.getImageUrl();
+    })
+  },
+  onUnload: function(){
+    fire.un(this.endMusic)
   },
   async getDetailSongList(){
       let that = this;
@@ -26,25 +47,31 @@ Page({
       })
   },
   onPullDownRefresh: function () {
-
+    this.getDetailSongList();
   },
 
   onReachBottom: function () {
 
   },
   onClickItem(e){
+    let that = this;
     let temp = e.currentTarget.dataset.item;
     wx.navigateTo({
       url: `/packageSong/pages/songDetail/index?id=${temp.mid}&mid=${temp.album.mid}`,
+      success: function(res){
+        res.eventChannel.emit('tosongDetail',that.data.songlist)
+      }
     })
   },
   playMusic(e){
     let temp = e.currentTarget.dataset.item;
+    let index = e.currentTarget.dataset.item;
     this.setData({
       songmid: temp.mid,
       albummid: temp.album.mid,
       songinfo: temp,
-      showMusicbar: true
+      showMusicbar: true,
+      index
     },() => {
       this.selectComponent('#music').init();
       this.setData({
@@ -53,6 +80,9 @@ Page({
     })
   },
   async getMusicPlay(){
+    if(this.data.songmid == globalData.song){
+      return ;
+    }
     let temp = await util.request(`${api.getMusicPlay}?songmid=${this.data.songmid}&justPlayUrl=all`,{},"get");
     this.setData({
       playUrl:temp.data.data.playUrl[`${this.data.songmid}`].url
@@ -61,8 +91,6 @@ Page({
         util.pxshowErrorToast('抱歉，暂无该歌曲资源',1000);
         return ;
       }
-      // music.init(this.data.playUrl);
-      // music.play();
     })
   },
   async getImageUrl(){

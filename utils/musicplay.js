@@ -1,17 +1,13 @@
 const fire = require('./onfire')
 let globalData = getApp().globalData
 let innerAudioContext = wx.createInnerAudioContext();
+innerAudioContext.autoplay = true;
+innerAudioContext.loop = false;
+innerAudioContext.volume = 0.2;
 
 function init(src){
-  if(globalData.src && globalData.src != src){
-    destroy();
-  }
-  innerAudioContext.autoplay = true;
-  innerAudioContext.loop = false;
-  innerAudioContext.volume = 0.2;
   innerAudioContext.src = src || '';
-  globalData.src = src || '';
-  globalData.innerAudioContext = innerAudioContext;
+
   innerAudioContext.onCanplay(() => {
     console.log('currentTime:',innerAudioContext.currentTime);
     console.log('duration:',innerAudioContext.duration);
@@ -20,6 +16,15 @@ function init(src){
         currentTime:innerAudioContext.currentTime,
         duration:innerAudioContext.duration
       })
+    });
+    innerAudioContext.onEnded(() => {
+       console.log('onEnded');
+       if(!innerAudioContext.loop){
+          innerAudioContext.offTimeUpdate(() => {
+            console.log('offTimeUpdate');
+            fire.fire('endMusic');
+          })
+       }
     })
   })
   pause();
@@ -54,6 +59,7 @@ function setLoop(){
 function destroy(){
   innerAudioContext.destroy();
 }
+
 
 
 module.exports = {

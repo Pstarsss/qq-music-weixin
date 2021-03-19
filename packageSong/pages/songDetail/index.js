@@ -3,15 +3,15 @@ const api = require('../../../router/api');
 const util = require('../../../utils/util');
 const music = require('../../../utils/musicplay');
 const fire = require('../../../utils/onfire');
-const app = getApp();
-const globalData = app.globalData
+const globalData = getApp().globalData
 Page({
   data: {
     currentIndex: 0,
     height: 1200,
-    currentTime:0,
+    currentTime:'00:00',
     step:0,
     max:100,
+    songlist:[]
   },
 
   /**
@@ -19,6 +19,17 @@ Page({
    */
   onLoad: function (e) {
     let that = this
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('tosongDetail', function(data) {
+      this.setData({
+        songlist
+      }, () => {
+        that.getSongInfo();
+        that.getLyric();
+        that.getMusicPlay();
+        that.getImageUrl();
+      })
+    })
     this.setData({
       songmid:e.id,
       mid:e.mid
@@ -36,6 +47,21 @@ Page({
         step:(res.currentTime).toFixed(0),
         max: res.duration.toFixed(0)
       })
+    });
+    this.endMusic = fire.on('endMusic',() => {
+      if((this.data.songlist.length - 1 ) == this.data.index){
+        that.setData({
+          index : 0,
+          info: that.data.songlist[0]
+        })
+      } else {
+        this.setData({
+          index: this.data.index + 1,
+          info: that.data.songlist[this.data.index + 1]
+        })
+      }
+      that.getMusicPlay();
+      that.getImageUrl();
     })
   },
   onUnload: function () {
@@ -66,12 +92,16 @@ Page({
     });
   },
   async getMusicPlay(){
+    if(this.data.songmid == globalData.song){
+      return false;
+    }
     let temp = await util.request(`${api.getMusicPlay}?songmid=${this.data.songmid}&justPlayUrl=all`,{},"get");
     console.log('getMusicPlay',temp.data.data.playUrl);
     this.setData({
       playUrl:temp.data.data.playUrl[`${this.data.songmid}`].url
     },() => {
       if(this.data.playUrl){
+        globalData.song = this.data.songmid;
         this.bofang();
       } else {
         util.pxshowErrorToast('抱歉，暂无该歌曲资源',1000);
