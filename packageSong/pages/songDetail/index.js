@@ -37,7 +37,7 @@ Page({
       that.getImageUrl();
     });
     this.playingTime = fire.on('playingTime',(res) => {
-      console.log('res:',res);
+      // 返回的res数据没问题  这个timeformat可能有问题
       this.setData({
         currentTime_copy:res,
         duration:util.timeformat(res.duration),
@@ -47,7 +47,9 @@ Page({
       })
     });
     this.endMusic = fire.on('endMusic',() => {
-      if((that.data.songlist.length - 1 ) == that.data.index){
+      console.log('index:',that.data.index);
+      console.log('songlist',that.data.songlist);
+      if((that.data.songlist.length - 1 ) === that.data.index){
         that.setData({
           info: that.data.songlist[0],
           songmid: that.data.songlist[0].mid,
