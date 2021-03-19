@@ -27,7 +27,6 @@ Page({
       that.getLyric();
       that.getMusicPlay();
       that.getImageUrl();
-      // that.getAlbumInfo();
     });
     this.playingTime = fire.on('playingTime',(res) => {
       this.setData({
@@ -43,6 +42,10 @@ Page({
     
   },
   onPullDownRefresh: function () {
+    this.getSongInfo();
+    this.getLyric();
+    this.getMusicPlay();
+    this.getImageUrl();
     this.get_lyricheight();
   },
   onShareAppMessage: function () {
@@ -95,12 +98,7 @@ Page({
       imageUrl:temp.data.response.data.imageUrl
     })
   },
-  async getAlbumInfo(){
-    let temp = await util.request(`${api.getAlbumInfo}?albummid=${this.data.mid}`,{},"get");
-    this.setData({
-      albuminfo:temp.data.response.data
-    })
-  },
+  
   changeIndex(e){
     this.setData({
       currentIndex: e.target.dataset.index
@@ -128,9 +126,9 @@ Page({
     }).exec();
   },
   sliderchange(e){
-    console.log("sliderchange:",e.detail);
+    music.seek(e.detail.value);
   },
   sliderchanging(e){
-    console.log('sliderchanging:',e)
+    music.seek(e.detail.value);
   }
 })

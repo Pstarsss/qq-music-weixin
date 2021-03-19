@@ -2,6 +2,7 @@ import regeneratorRuntime from 'regenerator-runtime'
 const util = require('../../utils/util');
 const api = require('../../router/api');
 const music = require('../../utils/musicplay');
+const fire = require('../../utils/onfire')
 const globalData = getApp().globalData
 
 Component({
@@ -33,19 +34,30 @@ Component({
   data: {
     playUrl:'',
     imageUrl:'',
+    step:0
   },
   lifetimes:{
-
+    ready(){
+      this.playingTime = fire.on('playingTime',(res) => {
+        this.setData({
+          currentTime_copy:res,
+          duration:util.timeformat(res.duration),
+          currentTime: util.timeformat(res.currentTime),
+          step:((res.currentTime).toFixed(0) / res.duration.toFixed(0)) * 100,
+          max: res.duration.toFixed(0)
+        },() => {
+          console.log(this.data.step);
+        })
+      })
+    }
   },
   /**
    * 组件的方法列表
    */
   methods: {
     init(){
-      
       this.getMusicPlay();
       this.getImageUrl();
-      console.log(this.data.songinfo)
     },
     async getMusicPlay(){
       let temp = await util.request(`${api.getMusicPlay}?songmid=${this.data.songmid}&justPlayUrl=all`,{},"get");

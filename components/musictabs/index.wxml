@@ -9,6 +9,9 @@
         <view>{{item.name}}</view>
       </block>
     </view>
+    <view class="circle-progress">
+      <van-circle value="{{ step }}" size="30" layer-color="rgb(50,50,50)" color="#fff" />
+    </view>
 
   </view>
   <image src="{{imageUrl}}" class="_playbar_img" mode="aspectFit"></image>

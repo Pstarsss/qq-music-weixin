@@ -1,15 +1,14 @@
 const fire = require('./onfire')
 let globalData = getApp().globalData
-let innerAudioContext;
+let innerAudioContext = wx.createInnerAudioContext();
 
 function init(src){
   if(globalData.src && globalData.src != src){
     destroy();
   }
-  innerAudioContext = wx.createInnerAudioContext() ;
   innerAudioContext.autoplay = true;
-  innerAudioContext.loop = true;
-  innerAudioContext.volume = 0.5;
+  innerAudioContext.loop = false;
+  innerAudioContext.volume = 0.2;
   innerAudioContext.src = src || '';
   globalData.src = src || '';
   globalData.innerAudioContext = innerAudioContext;
@@ -32,6 +31,7 @@ function play(){
     
   })
   
+
   innerAudioContext.onError((res) => {
     console.log(res.errMsg)
     console.log(res.errCode)
@@ -44,6 +44,13 @@ function pause(){
   innerAudioContext.pause();
 };
 
+function seek(number){
+  innerAudioContext.seek(number);
+}
+function setLoop(){
+  innerAudioContext.loop = true;
+}
+
 function destroy(){
   innerAudioContext.destroy();
 }
@@ -52,5 +59,7 @@ function destroy(){
 module.exports = {
   init,
   play,
-  pause
+  pause,
+  seek,
+  setLoop
 }
