@@ -104,7 +104,7 @@ Page({
       songinfo:temp.data.response.songinfo.data.track_info
     });
   },
-  async getMusicPlay(){
+  async getMusicPlay(more){
     if(this.data.songmid == globalData.song){
       return false;
     }
