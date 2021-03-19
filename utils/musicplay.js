@@ -1,5 +1,4 @@
 const fire = require('./onfire')
-let globalData = getApp().globalData
 let innerAudioContext = wx.createInnerAudioContext();
 innerAudioContext.autoplay = true;
 innerAudioContext.loop = false;
@@ -19,11 +18,9 @@ function init(src){
     });
     innerAudioContext.onEnded(() => {
        console.log('onEnded');
+       console.log('loop',innerAudioContext.loop);
        if(!innerAudioContext.loop){
-          innerAudioContext.offTimeUpdate(() => {
-            console.log('offTimeUpdate');
-            fire.fire('endMusic');
-          })
+          fire.fire('endMusic');
        }
     })
   })

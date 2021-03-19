@@ -1,6 +1,7 @@
 import regeneratorRuntime from 'regenerator-runtime'
 const util = require('../../../utils/util');
 const api = require('../../../router/api');
+const fire = require('../../../utils/onfire');
 const globalData = getApp().globalData
 
 Page({
@@ -56,8 +57,9 @@ Page({
   onClickItem(e){
     let that = this;
     let temp = e.currentTarget.dataset.item;
+    let index =  e.currentTarget.dataset.index;
     wx.navigateTo({
-      url: `/packageSong/pages/songDetail/index?id=${temp.mid}&mid=${temp.album.mid}`,
+      url: `/packageSong/pages/songDetail/index?id=${temp.mid}&mid=${temp.album.mid}&index=${index}`,
       success: function(res){
         res.eventChannel.emit('tosongDetail',that.data.songlist)
       }

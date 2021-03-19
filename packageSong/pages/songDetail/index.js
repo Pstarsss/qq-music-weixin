@@ -11,7 +11,8 @@ Page({
     currentTime:'00:00',
     step:0,
     max:100,
-    songlist:[]
+    songlist:[],
+    index: 0
   },
 
   /**
@@ -21,18 +22,14 @@ Page({
     let that = this
     const eventChannel = this.getOpenerEventChannel()
     eventChannel.on('tosongDetail', function(data) {
-      this.setData({
-        songlist
-      }, () => {
-        that.getSongInfo();
-        that.getLyric();
-        that.getMusicPlay();
-        that.getImageUrl();
+      that.setData({
+        songlist:data
       })
     })
     this.setData({
-      songmid:e.id,
-      mid:e.mid
+      songmid: e.id,
+      mid: e.mid,
+      index: e.index
     },() => {
       that.getSongInfo();
       that.getLyric();
@@ -40,6 +37,7 @@ Page({
       that.getImageUrl();
     });
     this.playingTime = fire.on('playingTime',(res) => {
+      console.log('res:',res);
       this.setData({
         currentTime_copy:res,
         duration:util.timeformat(res.duration),
@@ -49,23 +47,36 @@ Page({
       })
     });
     this.endMusic = fire.on('endMusic',() => {
-      if((this.data.songlist.length - 1 ) == this.data.index){
+      if((that.data.songlist.length - 1 ) == that.data.index){
         that.setData({
+          info: that.data.songlist[0],
+          songmid: that.data.songlist[0].mid,
+          mid: that.data.songlist[0].album.mid,
           index : 0,
-          info: that.data.songlist[0]
+        }, () => {
+          that.getSongInfo();
+          that.getLyric();
+          that.getMusicPlay();
+          that.getImageUrl();
         })
       } else {
-        this.setData({
-          index: this.data.index + 1,
-          info: that.data.songlist[this.data.index + 1]
+        that.setData({
+          info: that.data.songlist[that.data.index + 1],
+          songmid: that.data.songlist[that.data.index + 1].mid,
+          mid: that.data.songlist[that.data.index + 1].album.mid,
+          index: that.data.index + 1,
+        }, () => {
+          that.getSongInfo();
+          that.getLyric();
+          that.getMusicPlay();
+          that.getImageUrl();
         })
       }
-      that.getMusicPlay();
-      that.getImageUrl();
     })
   },
   onUnload: function () {
-    
+    fire.un(this.endMusic);
+    fire.un(this.playingTime);
   },
   onPullDownRefresh: function () {
     this.getSongInfo();
@@ -98,7 +109,8 @@ Page({
     let temp = await util.request(`${api.getMusicPlay}?songmid=${this.data.songmid}&justPlayUrl=all`,{},"get");
     console.log('getMusicPlay',temp.data.data.playUrl);
     this.setData({
-      playUrl:temp.data.data.playUrl[`${this.data.songmid}`].url
+      playUrl:temp.data.data.playUrl[`${this.data.songmid}`].url,
+      [`songlist[${this.data.index}]['url']`]:temp.data.data.playUrl[`${this.data.songmid}`].url
     },() => {
       if(this.data.playUrl){
         globalData.song = this.data.songmid;
@@ -110,7 +122,6 @@ Page({
   },
   async getLyric(){
     let temp = await util.request(`${api.getLyric}?songmid=${this.data.songmid}`,{},"get");
-
     let songlyric = temp.data.response.lyric.replace(new RegExp(/\[(\S*)\]/g),'').trim();
     songlyric = songlyric.replace(/<[^<>]+>/g, '');
     songlyric = songlyric.replace(/&nbsp;/ig, '').replace(/(\n[\s\t]*\r*\n)/g, '\n').replace(/^[\n\r\n\t]*|[\n\r\n\t]*$/g, '');
@@ -125,7 +136,7 @@ Page({
     let temp = await util.request(`${api.getImageUrl}?id=${this.data.mid}`,{},"get");
     console.log('getImageUrl',temp.data.response.data.imageUrl);
     this.setData({
-      imageUrl:temp.data.response.data.imageUrl
+      imageUrl:temp.data.response.data.imageUrl,
     })
   },
   
@@ -147,9 +158,7 @@ Page({
   },
   get_lyricheight(){
     let that = this;
-    let temp;
-    const query = wx.createSelectorQuery().in(this);
-    query.select('._lyric-body').boundingClientRect(function(res){
+    wx.createSelectorQuery().in(this).select('._lyric-body').boundingClientRect(function(res){
       that.setData({
         height:res.height + 60
       })
@@ -157,8 +166,14 @@ Page({
   },
   sliderchange(e){
     music.seek(e.detail.value);
+    this.setData({
+      currentTime: util.timeformat(e.detail.value)
+    })
   },
   sliderchanging(e){
     music.seek(e.detail.value);
+    this.setData({
+      currentTime: util.timeformat(e.detail.value)
+    })
   }
 })
