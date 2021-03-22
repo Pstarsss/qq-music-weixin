@@ -1,6 +1,8 @@
 // let defaultUrl = 'http://192.168.43.166:3200';
-let defaultUrl = 'http://172.16.67.40:3200';
+// let defaultUrl = 'http://172.16.67.40:3200';
 // let defaultUrl = 'http://localhost:3200';
+let defaultUrl = 'http://192.168.2.200:3200';
+
 
 module.exports = {
   getSongListCategories : defaultUrl + '/getSongListCategories', // 分类歌单  拿到 对应的分类ID

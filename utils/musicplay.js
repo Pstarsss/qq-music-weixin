@@ -1,7 +1,7 @@
 const fire = require('./onfire')
 let innerAudioContext = wx.createInnerAudioContext();
-innerAudioContext.autoplay = true;
-innerAudioContext.loop = false;
+innerAudioContext.autoplay = true; 
+innerAudioContext.loop = false; // 默认不单曲循环
 innerAudioContext.volume = 0.2;
 
 function init(src){
@@ -30,7 +30,7 @@ function init(src){
 function play(){
   innerAudioContext.play();
   innerAudioContext.onPlay(() => {
-    
+    console.log('开始播放')
   })
   
 
@@ -41,7 +41,7 @@ function play(){
 }
 function pause(){
   innerAudioContext.onPause(() => {
-    console.log('开始播放')
+    console.log('暂停了')
   })
   innerAudioContext.pause();
 };
@@ -50,7 +50,7 @@ function seek(number){
   innerAudioContext.seek(number);
 }
 function setLoop(){
-  innerAudioContext.loop = true;
+  innerAudioContext.loop = !innerAudioContext.loop;
 }
 
 function destroy(){

@@ -21,20 +21,17 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": true,
+    "useMultiFrameRuntime": false,
     "useApiHook": true,
-    "useApiHostProcess": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
-    "userConfirmedBundleSwitch": false,
     "packNpmManually": true,
     "packNpmRelationList": [
       {
@@ -42,6 +39,9 @@
         "miniprogramNpmDistDir": "./"
       }
     ],
+    "useApiHostProcess": true,
+    "enableEngineNative": false,
+    "userConfirmedBundleSwitch": false,
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
@@ -56,6 +56,14 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
     "plugin": {
       "list": []
     },
@@ -68,45 +76,31 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/kmap/index",
-          "pathName": "pages/kmap/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "榜单",
-          "pathName": "packageSong/pages/one/index",
-          "query": "id=4",
-          "scene": null
-        },
-        {
-          "name": "分类哦",
-          "pathName": "pages/categatory/index",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "流行分类",
+          "id": -1,
+          "name": "分类详情",
           "pathName": "packageSong/pages/categorySongList/index",
-          "query": "categoryId=6&categoryName=流行",
+          "query": "categoryId=199&categoryName=背景音乐",
           "scene": null
         },
         {
-          "name": "分类歌单下的歌单详情",
+          "id": 1,
+          "name": "分类歌取详情",
           "pathName": "packageSong/pages/songDetailList/index",
-          "query": "disstid=7086963853",
+          "query": "disstid=4255772637",
           "scene": null
         },
         {
-          "name": "无人之岛",
+          "id": -1,
+          "name": "歌曲详情",
           "pathName": "packageSong/pages/songDetail/index",
-          "query": "id=000zHfWw3pvMK5&mid=001Ta09h1RG6lc",
+          "query": "id=000qUMkO3ukMC2&mid=001vLwvq0xltN3&index=2",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "獒婿",
+          "pathName": "packageSong/pages/songDetail/index",
+          "query": "id=001EOSh935Mjgj&mid=0009wKDD3Y5VoN&index=5",
           "scene": null
         }
       ]

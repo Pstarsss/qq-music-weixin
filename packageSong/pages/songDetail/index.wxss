@@ -1,4 +1,4 @@
-
+@import '/utils/css/iconfont.wxss';
 .container{
   min-height:100vh;
   background-image: linear-gradient(45deg, rgb(40,40,40),rgb(60,60,60),rgb(80,80,80),rgb(100,100,100),rgb(120,120,120));
@@ -60,6 +60,31 @@
   justify-content: space-between;
   align-items: center;
 }
+.song_function{
+  width: calc( 100vw - 100rpx );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 0 20rpx 0;
+}
+.pic{
+  font-size: 60rpx;
+  color: #fff;
+}
+.pic1{
+  font-size: 70rpx;
+  color: #00000099;
+  padding: 10rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pic2{
+  font-size: 40rpx;
+  color: #ffffffa6;
+}
 
 #lyric{
   height: calc( 100vh - 120rpx );
@@ -95,5 +120,6 @@
   position: absolute;
   transition: all 0.3s;
 }
+
 
 

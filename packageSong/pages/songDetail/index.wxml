@@ -57,7 +57,17 @@
         </view>
         </view>
         <view class="song_function">
-          
+          <view catchtap="change_loop">
+            <view wx:if="{{loop}}" class="iconfont icon-danquxunhuan pic2"></view>
+            <view wx:else class="iconfont icon-xunhuan pic2"></view>
+          </view>
+          <view catchtap="change_pre" class="iconfont icon-shangyishou pic"></view>
+          <view catchtap="change_state">
+            <view wx:if="{{state}}" class="iconfont icon-bofang pic1"></view>
+            <view wx:else class="iconfont icon-bofang2 pic1"></view>
+          </view>
+          <view catchtap="change_next" class="iconfont icon-xiayishou pic"></view>
+          <view catchtap="change_volume" class="iconfont icon-yinliang pic2"></view>
         </view>
       </view>
     </swiper-item>

@@ -1,4 +1,5 @@
 import regeneratorRuntime from 'regenerator-runtime'
+import musicplay from '../../../utils/musicplay';
 const api = require('../../../router/api');
 const util = require('../../../utils/util');
 const music = require('../../../utils/musicplay');
@@ -12,7 +13,11 @@ Page({
     step:0,
     max:100,
     songlist:[],
-    index: 0
+    index: 0,
+    state:true, //播放状态
+    loop: false, // 单曲循环状态
+    volume: 0.2, // 默认的音量
+    btn_state: true, // 当前点击下一曲 否则点击上一曲
   },
 
   /**
@@ -21,7 +26,7 @@ Page({
   onLoad: function (e) {
     let that = this
     const eventChannel = this.getOpenerEventChannel()
-    eventChannel.on('tosongDetail', function(data) {
+    Object.keys(eventChannel).length > 0 && eventChannel.on('tosongDetail', function(data) {
       that.setData({
         songlist:data
       })
@@ -31,13 +36,10 @@ Page({
       mid: e.mid,
       index: e.index
     },() => {
-      that.getSongInfo();
-      that.getLyric();
-      that.getMusicPlay();
-      that.getImageUrl();
+      that._update();
     });
     this.playingTime = fire.on('playingTime',(res) => {
-      // 返回的res数据没问题  这个timeformat可能有问题
+      // 歌曲总时间只需算一次；需要优化
       this.setData({
         currentTime_copy:res,
         duration:util.timeformat(res.duration),
@@ -47,33 +49,7 @@ Page({
       })
     });
     this.endMusic = fire.on('endMusic',() => {
-      console.log('index:',that.data.index);
-      console.log('songlist',that.data.songlist);
-      if((that.data.songlist.length - 1 ) === that.data.index){
-        that.setData({
-          info: that.data.songlist[0],
-          songmid: that.data.songlist[0].mid,
-          mid: that.data.songlist[0].album.mid,
-          index : 0,
-        }, () => {
-          that.getSongInfo();
-          that.getLyric();
-          that.getMusicPlay();
-          that.getImageUrl();
-        })
-      } else {
-        that.setData({
-          info: that.data.songlist[that.data.index + 1],
-          songmid: that.data.songlist[that.data.index + 1].mid,
-          mid: that.data.songlist[that.data.index + 1].album.mid,
-          index: that.data.index + 1,
-        }, () => {
-          that.getSongInfo();
-          that.getLyric();
-          that.getMusicPlay();
-          that.getImageUrl();
-        })
-      }
+      that.change_next();
     })
   },
   onUnload: function () {
@@ -81,14 +57,25 @@ Page({
     fire.un(this.playingTime);
   },
   onPullDownRefresh: function () {
+    this._update();
+    this.get_lyricheight();
+  },
+  _update(){
     this.getSongInfo();
     this.getLyric();
     this.getMusicPlay();
     this.getImageUrl();
-    this.get_lyricheight();
   },
-  onShareAppMessage: function () {
-
+  _update_index(index){
+    let that = this;
+    that.setData({
+      info: that.data.songlist[index],
+      songmid: that.data.songlist[index].mid,
+      mid: that.data.songlist[index].album.mid,
+      index: index,
+    }, () => {
+      that._update();
+    })
   },
   bofang(){
     let result = music.init(this.data.playUrl);
@@ -104,23 +91,33 @@ Page({
       songinfo:temp.data.response.songinfo.data.track_info
     });
   },
-  async getMusicPlay(more){
-    if(this.data.songmid == globalData.song){
+  async getMusicPlay(){
+    let that = this;
+    if(that.data.songmid == globalData.song){
       return false;
     }
-    let temp = await util.request(`${api.getMusicPlay}?songmid=${this.data.songmid}&justPlayUrl=all`,{},"get");
+    let save_url = that.data.songlist[that.data.index].url
+    if(save_url && save_url !== void 0){
+      this.setData({
+        playUrl:save_url
+      });
+      return false;
+    }
+    let temp = await util.request(`${api.getMusicPlay}?songmid=${that.data.songmid}&justPlayUrl=all`,{},"get");
     console.log('getMusicPlay',temp.data.data.playUrl);
-    this.setData({
-      playUrl:temp.data.data.playUrl[`${this.data.songmid}`].url,
-      [`songlist[${this.data.index}]['url']`]:temp.data.data.playUrl[`${this.data.songmid}`].url
-    },() => {
-      if(this.data.playUrl){
-        globalData.song = this.data.songmid;
-        this.bofang();
-      } else {
-        util.pxshowErrorToast('抱歉，暂无该歌曲资源',1000);
-      }
-    })
+    let result_url = temp.data.data.playUrl;
+    if(result_url){
+      that.setData({
+        playUrl:temp.data.data.playUrl[`${that.data.songmid}`].url,
+        [`songlist[${this.data.index}].url`]:temp.data.data.playUrl[`${this.data.songmid}`].url
+      },() => {
+        globalData.song = that.data.songmid;
+        that.bofang();
+      })
+    } else {
+      util.pxshowErrorToast('抱歉，暂无该歌曲资源',1000);
+      that.data.btn_state ? that.change_next() : that.change_pre();
+    }
   },
   async getLyric(){
     let temp = await util.request(`${api.getLyric}?songmid=${this.data.songmid}`,{},"get");
@@ -176,6 +173,41 @@ Page({
     music.seek(e.detail.value);
     this.setData({
       currentTime: util.timeformat(e.detail.value)
+    })
+  },
+  change_volume(){
+    console.log('change_volume')
+  },
+  change_next(){
+    let index = this.data.index;
+    if(this.data.songlist){
+      this._update_index(index >= this.data.songlist.length - 1 ? 0 : parseInt(index + 1))
+      this.setData({
+        btn_state:true
+      })
+    }
+  },
+  change_state(){
+    this.setData({
+      state: !this.data.state
+    },() => {
+      this.data.state ? musicplay.play() :  musicplay.pause()
+    })
+  },
+  change_pre(){
+    let index = this.data.index;
+    if(this.data.songlist){
+      this._update_index(index <= 0 ? this.data.songlist.length - 1 : index - 1);
+      this.setData({
+        btn_state:false
+      })
+    }
+  },
+  change_loop(){
+    this.setData({
+      loop: !this.data.loop
+    },() => {
+      musicplay.setLoop();
     })
   }
 })

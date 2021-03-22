@@ -48,16 +48,15 @@ function getNumber(num){
 
 // 时间转为  00:00;
 // 传入时间 一小时内
-function timeformat(time){
+function timeformat(time,state){
   if(Object.prototype.toString.call(time) != '[object Number]'){
     return false;
   }
   time = time.toFixed(0);
   let minutes = 0;
   let seconds = 0;
-  // let temp = time >= 60 ? minutes = (time/60).toFixed(0) : seconds = time;
   if(time >= 60){
-    minutes = (time / 60).toFixed(0);
+    minutes =  Math.floor((time / 60));
     seconds = (time % 60);
   } else {
     seconds = time
