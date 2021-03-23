@@ -13,7 +13,8 @@
         "pages/one/index",
         "pages/categorySongList/index",
         "pages/songDetail/index",
-        "pages/songDetailList/index"
+        "pages/songDetailList/index",
+        "pages/search/index"
       ]
     }
   ],

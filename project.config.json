@@ -102,6 +102,12 @@
           "pathName": "packageSong/pages/songDetail/index",
           "query": "id=001EOSh935Mjgj&mid=0009wKDD3Y5VoN&index=5",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "搜索框哦",
+          "pathName": "packageSong/pages/search/index",
+          "scene": null
         }
       ]
     }

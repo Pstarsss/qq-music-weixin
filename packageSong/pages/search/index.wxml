@@ -1,0 +1,35 @@
+<view class="nav-bar"
+  style="height:{{menuButtonBoundingClientRect.bottom + 10}}px;background-color:rgb(255,255,255);">
+  <view class="swap"
+    style="margin-top:{{menuButtonBoundingClientRect.top - (26 - menuButtonBoundingClientRect.height)/2}}px;">
+    <nav_bar leftArrow="{{true}}"></nav_bar>
+  </view>
+</view>
+<view  class="container" style="margin-top:{{menuButtonBoundingClientRect.bottom + 10}}px;min-height:calc( 100vh - {{menuButtonBoundingClientRect.bottom + 10}}px );">
+  <view class="search-bar">
+    <van-search
+      value="{{ currentKey }}"
+      placeholder="搜索 音乐/视频/歌手/歌单"
+      show-action ="{{show_action}}"
+      bind:search="onSearch"
+      bind:cancel="onCancel"
+      bind:change="onInput"
+      shape="round"
+      background="#f2f2f2"
+      clearable
+      custom-class="px_search"
+    />
+  </view>
+  <view wx:if="{{!keyResource}}" class="hotkey">
+    <block wx:for="{{hotkey}}" wx:key="*this">
+      <view class="key_item" catchtap="onClickItem" data-item="{{item.k}}">{{item.k}}</view>
+    </block>
+  </view>
+  <view wx:else class="tabs">
+    <van-tabs active="{{ currentIndex }}" bind:change="onChange">
+      <van-tab title="标签 1">歌曲</van-tab>
+      <van-tab title="标签 2">歌单</van-tab>
+      <van-tab title="标签 3">视频</van-tab>
+    </van-tabs>
+  </view>
+</view>

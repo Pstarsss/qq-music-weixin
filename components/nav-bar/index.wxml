@@ -1,0 +1,10 @@
+<!--components/nav-bar/index.wxml-->
+<view class="nav-bar-custom" style="width:{{leftArrow?174:66}}rpx">
+  <image class="back-icon" bindtap="onBack" wx:if="{{leftArrow}}"
+    src="https://mall-static.yqslmall.com//dev/material/17150e0c0bd2460c80ebb14ba828aeb7.png">
+  </image>
+  <text class="line" wx:if="{{leftArrow}}">|</text>
+  <image class="home-icon" bindtap="onHome"
+    src="https://mall-static.yqslmall.com//dev/material/0c2047887c2b4bb7b832fd335091e5ae.png">
+  </image>
+</view>
