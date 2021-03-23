@@ -6,14 +6,13 @@ innerAudioContext.volume = 0.2;
 
 function init(src){
   innerAudioContext.src = src || '';
-
+  console.log('innerAudioContext:',innerAudioContext.duration);
   innerAudioContext.onCanplay(() => {
     console.log('currentTime:',innerAudioContext.currentTime);
     console.log('duration:',innerAudioContext.duration);
     innerAudioContext.onTimeUpdate(() => {
       fire.fire('playingTime',{
-        currentTime:innerAudioContext.currentTime,
-        duration:innerAudioContext.duration
+        currentTime:innerAudioContext.currentTime
       })
     });
     innerAudioContext.onEnded(() => {
@@ -24,24 +23,24 @@ function init(src){
        }
     })
   })
-  pause();
-
+  // pause();
+  return  innerAudioContext.duration;
 }
 function play(){
   innerAudioContext.play();
   innerAudioContext.onPlay(() => {
-    console.log('开始播放')
+    // console.log('开始播放')
   })
   
 
   innerAudioContext.onError((res) => {
-    console.log(res.errMsg)
-    console.log(res.errCode)
+    console.log('onError:',res.errMsg)
+    console.log('onError:',res.errCode)
   })
 }
 function pause(){
   innerAudioContext.onPause(() => {
-    console.log('暂停了')
+    // console.log('暂停了')
   })
   innerAudioContext.pause();
 };
@@ -52,6 +51,15 @@ function seek(number){
 function setLoop(){
   innerAudioContext.loop = !innerAudioContext.loop;
 }
+
+function setVolume(value){
+  innerAudioContext.volume = value;
+}
+
+function getMusicDuration() {
+  return innerAudioContext.duration;
+}
+
 
 function destroy(){
   innerAudioContext.destroy();
@@ -64,5 +72,7 @@ module.exports = {
   play,
   pause,
   seek,
-  setLoop
+  setLoop,
+  setVolume,
+  getMusicDuration
 }

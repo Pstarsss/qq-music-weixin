@@ -67,10 +67,20 @@ function timeformat(time,state){
 function addzero(time){
   return time >= 10 ? time : '0' + time
 }
+function debounce(fn, wait) {
+  let timer;
+  return function () {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+          fn.apply(this, arguments)   // 把参数传进去
+      }, wait);
+  }
+}
 
 module.exports = {
   request,
   pxshowErrorToast,
   getwang,
-  timeformat
+  timeformat,
+  debounce
 }

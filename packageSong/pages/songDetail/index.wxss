@@ -85,6 +85,10 @@
   font-size: 40rpx;
   color: #ffffffa6;
 }
+.section_gap{
+}
+
+
 
 #lyric{
   height: calc( 100vh - 120rpx );

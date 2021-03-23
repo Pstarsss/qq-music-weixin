@@ -5,6 +5,7 @@ const util = require('../../../utils/util');
 const music = require('../../../utils/musicplay');
 const fire = require('../../../utils/onfire');
 const globalData = getApp().globalData
+let timer;
 Page({
   data: {
     currentIndex: 0,
@@ -16,8 +17,9 @@ Page({
     index: 0,
     state:true, //播放状态
     loop: false, // 单曲循环状态
-    volume: 0.2, // 默认的音量
+    volume: 20, // 默认的音量
     btn_state: true, // 当前点击下一曲 否则点击上一曲
+    show_volume:true, // 显示音量条
   },
 
   /**
@@ -42,10 +44,8 @@ Page({
       // 歌曲总时间只需算一次；需要优化
       this.setData({
         currentTime_copy:res,
-        duration:util.timeformat(res.duration),
         currentTime: util.timeformat(res.currentTime),
         step:(res.currentTime).toFixed(0),
-        max: res.duration.toFixed(0)
       })
     });
     this.endMusic = fire.on('endMusic',() => {
@@ -68,6 +68,7 @@ Page({
   },
   _update_index(index){
     let that = this;
+    console.log(that.data.songlist[index]);
     that.setData({
       info: that.data.songlist[index],
       songmid: that.data.songlist[index].mid,
@@ -79,10 +80,12 @@ Page({
   },
   bofang(){
     let result = music.init(this.data.playUrl);
+
     this.setData({
-      song:result
+      duration:util.timeformat(result),
+      max: result.toFixed(0),
     });
-    music.play();
+    // music.play();
   },
   async getSongInfo(){
     let temp = await util.request(`${api.getSongInfo}?songmid=${this.data.songmid}`,{},"get");
@@ -93,6 +96,8 @@ Page({
   },
   async getMusicPlay(){
     let that = this;
+    console.log('getMusicPlay');
+    console.log('globalData.song',that.data.songmid == globalData.song);
     if(that.data.songmid == globalData.song){
       return false;
     }
@@ -100,6 +105,9 @@ Page({
     if(save_url && save_url !== void 0){
       this.setData({
         playUrl:save_url
+      },() => {
+        globalData.song = that.data.songmid;
+        that.bofang();
       });
       return false;
     }
@@ -115,12 +123,14 @@ Page({
         that.bofang();
       })
     } else {
-      util.pxshowErrorToast('抱歉，暂无该歌曲资源',1000);
-      that.data.btn_state ? that.change_next() : that.change_pre();
+      util.pxshowErrorToast('抱歉，暂无该歌曲资源',1200);
+      that.data.btn_state ? that.deb_change_next() : that.deb_change_pre();
     }
   },
   async getLyric(){
     let temp = await util.request(`${api.getLyric}?songmid=${this.data.songmid}`,{},"get");
+    console.log('歌词',temp);
+
     let songlyric = temp.data.response.lyric.replace(new RegExp(/\[(\S*)\]/g),'').trim();
     songlyric = songlyric.replace(/<[^<>]+>/g, '');
     songlyric = songlyric.replace(/&nbsp;/ig, '').replace(/(\n[\s\t]*\r*\n)/g, '\n').replace(/^[\n\r\n\t]*|[\n\r\n\t]*$/g, '');
@@ -133,7 +143,7 @@ Page({
   },
   async getImageUrl(){
     let temp = await util.request(`${api.getImageUrl}?id=${this.data.mid}`,{},"get");
-    console.log('getImageUrl',temp.data.response.data.imageUrl);
+    console.log('图片资源',temp);
     this.setData({
       imageUrl:temp.data.response.data.imageUrl,
     })
@@ -159,7 +169,7 @@ Page({
     let that = this;
     wx.createSelectorQuery().in(this).select('._lyric-body').boundingClientRect(function(res){
       that.setData({
-        height:res.height + 60
+        height: res.height + 100
       })
     }).exec();
   },
@@ -178,10 +188,29 @@ Page({
   change_volume(){
     console.log('change_volume')
   },
+  slider_volume(e){
+    console.log(e);
+    let value = e.detail.value;
+    // musicplay.setVolume();
+  },
+  px_debounce(fn,wait = 800){
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        fn.call(this,arguments);
+      },wait);
+    }
+  },
+  deb_change_next(){
+    this.px_debounce(this.change_next)();
+  },
+  deb_change_pre(){
+    this.px_debounce(this.change_pre)();
+  },
   change_next(){
     let index = this.data.index;
     if(this.data.songlist){
-      this._update_index(index >= this.data.songlist.length - 1 ? 0 : parseInt(index + 1))
+      this._update_index(index >= this.data.songlist.length - 1 ? 0 : parseInt(index) + 1)
       this.setData({
         btn_state:true
       })
@@ -197,7 +226,7 @@ Page({
   change_pre(){
     let index = this.data.index;
     if(this.data.songlist){
-      this._update_index(index <= 0 ? this.data.songlist.length - 1 : index - 1);
+      this._update_index(index <= 0 ? this.data.songlist.length - 1 : parseInt(index) - 1);
       this.setData({
         btn_state:false
       })
