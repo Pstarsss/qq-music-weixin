@@ -16,7 +16,9 @@ Page({
     show_action:false,
     currentKey:'',
     currentIndex:0,
-    keyResource:''
+    keyResource:'',
+    key_song:[],
+    key_mv:[]
   },
   onLoad: function (options) {
     this.getHotkey();
@@ -64,11 +66,15 @@ Page({
   async getKeyResource(){
     let result = await util.request(`${api.getSearchByKey}?key=${this.data.currentKey}`,{},"get");
     this.setData({
-      keyResource: result.data.response.data
+      keyResource: result.data.response.data,
+      key_song:result.data.response.data.song,
+      key_mv:result.data.response.data.zhida
     })
     console.log('getKeyResource:',result);
   },
   onChange(e){
-    console.log(e);
+    this.setData({
+      currentIndex:e.detail.index
+    })
   }
 })

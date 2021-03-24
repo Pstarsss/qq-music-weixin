@@ -20,16 +20,20 @@
       custom-class="px_search"
     />
   </view>
-  <view wx:if="{{!keyResource}}" class="hotkey">
+  <view wx:if="{{!currentKey}}" class="hotkey">
     <block wx:for="{{hotkey}}" wx:key="*this">
       <view class="key_item" catchtap="onClickItem" data-item="{{item.k}}">{{item.k}}</view>
     </block>
   </view>
-  <view wx:else class="tabs">
-    <van-tabs active="{{ currentIndex }}" bind:change="onChange">
-      <van-tab title="标签 1">歌曲</van-tab>
-      <van-tab title="标签 2">歌单</van-tab>
-      <van-tab title="标签 3">视频</van-tab>
+  <view wx:if="{{keyResource && currentKey}}" class="tabs">
+    <!-- title-active-color="#28ef28" -->
+    <van-tabs active="{{ currentIndex }}"  bind:change="onChange">
+      <van-tab title="歌曲">
+        <key_song item="{{key_song}}"></key_song>
+      </van-tab>
+      <van-tab title="视频">
+        <key_mv item="{{key_mv}}"></key_mv>
+      </van-tab>
     </van-tabs>
   </view>
 </view>

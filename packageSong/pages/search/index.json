@@ -1,6 +1,9 @@
 {
   "usingComponents": {
     "nav_bar":"/components/nav-bar/index",
+    "key_song":"../../components/key_song/index",
+    "key_mv":"../../components/key_mv/index",
+    "key_songlist":"../../components/key_songlist/index",
     "van-search": "@vant/weapp/search/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index"
