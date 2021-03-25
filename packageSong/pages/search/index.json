@@ -9,5 +9,6 @@
     "van-tabs": "@vant/weapp/tabs/index"
   },
   "navigationBarTitleText": "搜索",
-  "navigationStyle": "custom"
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false
 }

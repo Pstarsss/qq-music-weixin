@@ -1,2 +1,10 @@
-<!--packageSong/components/key_song/index.wxml-->
-<text>packageSong/components/key_song/index.wxml</text>
+<view class="container">
+  <block wx:for="{{list}}" wx:key="id" wx:for-item="item1">
+    <view>{{item1.name}}</view>
+    <view class="singers">
+      <block wx:for="{{item1.singer}}" wx:for-item="item2" wx:key="id">
+        <view>{{item2.name}}</view>
+      </block>
+    </view>
+  </block>
+</view>

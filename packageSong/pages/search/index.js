@@ -30,8 +30,12 @@ Page({
 
   },
   onReachBottom: function(){
-
+    let temp = this.createSelectorQuery.in(this);
+    switch (currentIndex){
+      case 0:
+    }
   },
+  
   onInput(e){
     this.setData({
       currentKey:e.detail
@@ -46,7 +50,7 @@ Page({
     this.getKeyResource();
   },
   onCancel(){
-    console.log("onCancel")
+    console.log("onCancel");
   },
   async getHotkey(){
     let result = await util.request(`${api.getHotkey}`,{},"get");

@@ -1,23 +1,27 @@
-// packageSong/components/key_song/index.js
 Component({
-  /**
-   * 组件的属性列表
-   */
+
   properties: {
-
+    item:{
+      type:Object,
+      value:{},
+    }
   },
 
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    curnum:0,
+    curpage:1,
+    list:[],
+    totalnum:0
   },
-
-  /**
-   * 组件的方法列表
-   */
+  lifetimes:{
+    ready(){
+      console.log(this.data.item)
+      this.setData({
+        ...this.data.item
+      })
+    }
+  },
   methods: {
-
+    
   }
 })
