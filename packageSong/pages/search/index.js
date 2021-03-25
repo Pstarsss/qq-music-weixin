@@ -27,13 +27,27 @@ Page({
 
   },
   onPullDownRefresh: function () {
-
+    let temp = '';
+    switch (this.data.currentIndex){
+      case 0: temp = this.selectComponent('#kSong'); break;
+      case 1: temp = this.selectComponent('#kmv'); break;
+    }
+    if(!temp){
+      return;
+    }
+    temp.onPullDownRefresh();
   },
   onReachBottom: function(){
-    let temp = this.createSelectorQuery.in(this);
-    switch (currentIndex){
-      case 0:
+    let temp = '';
+    switch (this.data.currentIndex){
+      case 0: temp = this.selectComponent('#kSong'); break;
+      case 1: temp = this.selectComponent('#kmv'); break;
     }
+    if(!temp){
+      return;
+    }
+    console.log(temp);
+    temp.onReachBottom();
   },
   onInput(e){
     this.setData({
@@ -70,8 +84,6 @@ Page({
     let result = await util.request(`${api.getSearchByKey}?key=${this.data.currentKey}`,{},"get");
     this.setData({
       keyResource: result.data.response.data,
-      key_song:result.data.response.data.song,
-      key_mv:result.data.response.data.zhida
     })
     console.log('getKeyResource:',result);
   },

@@ -1,1 +1,29 @@
-/* packageSong/components/key_song/index.wxss */
+.container{
+  padding:20rpx 32rpx;
+}
+.item{
+  height: 130rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.item:nth-of-type(n+2){
+  border-top: 1rpx solid #ccccccbf
+}
+.song_name{
+  font-size: 28rpx;
+}
+.singers{
+  display: flex;
+  align-items: center;
+}
+.singer_name{
+  font-size: 24rpx;
+  padding-right: 20rpx;
+}
+.loading{
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

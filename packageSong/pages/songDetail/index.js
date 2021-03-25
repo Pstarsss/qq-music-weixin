@@ -68,7 +68,6 @@ Page({
   },
   _update_index(index){
     let that = this;
-    console.log(that.data.songlist[index]);
     that.setData({
       info: that.data.songlist[index],
       songmid: that.data.songlist[index].mid,
@@ -85,7 +84,7 @@ Page({
       duration:util.timeformat(result),
       max: result.toFixed(0),
     });
-    // music.play();
+    music.play();
   },
   async getSongInfo(){
     let temp = await util.request(`${api.getSongInfo}?songmid=${this.data.songmid}`,{},"get");
@@ -96,8 +95,6 @@ Page({
   },
   async getMusicPlay(){
     let that = this;
-    console.log('getMusicPlay');
-    console.log('globalData.song',that.data.songmid == globalData.song);
     if(that.data.songmid == globalData.song){
       return false;
     }

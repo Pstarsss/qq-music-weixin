@@ -37,6 +37,9 @@
   margin-right: 20rpx;
   margin-bottom: 20rpx;
 }
-.tabs .van-tabs_line{
+.tabs .van-ellipsis{
+  font-size: 24rpx;
+}
+.tabs .van-tabs__line{
   background-color: #28ef28 !important;
 }

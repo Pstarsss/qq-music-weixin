@@ -1,10 +1,21 @@
 <view class="container">
-  <block wx:for="{{list}}" wx:key="id" wx:for-item="item1">
-    <view>{{item1.name}}</view>
-    <view class="singers">
-      <block wx:for="{{item1.singer}}" wx:for-item="item2" wx:key="id">
-        <view>{{item2.name}}</view>
-      </block>
-    </view>
-  </block>
+  <view class="list" wx:if="{{songlist.length > 0}}">
+    <block wx:for="{{songlist}}" wx:key="id" wx:for-item="item1">
+      <view catchtap="onClickItem" data-index="{{index}}" class="item" data-item="{{item1}}">
+        <view class="song_name">{{item1.name}}</view>
+        <view class="singers">
+          <block wx:for="{{item1.singer}}" wx:for-item="item2" wx:key="id">
+            <view class="singer_name">{{item2.name}}</view>
+          </block>
+        </view> 
+      </view>
+    </block>
+  </view>
+  <view class="loading" wx:else>
+    <van-loading wx:if="{{loading}}" color="rgb(255,144,18)" size="24px" color="#1989fa">加载中...</van-loading>
+  </view>
+  <view wx:if="{{songlist.length > 0}}" class="loading">
+    <van-loading wx:if="{{true}}" size="18px" color="rgb(255,144,18)">加载中...</van-loading>
+    <view class="finish" wx:if="{{finished}}">~我也是有底线的哦~</view>
+  </view>
 </view>
