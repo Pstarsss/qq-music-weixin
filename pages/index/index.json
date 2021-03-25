@@ -3,6 +3,7 @@
   "navigationBarBackgroundColor":"#efefef",
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
+    "van-icon": "@vant/weapp/icon/index",
     "bangdanitem": "/components/bangdanItem/index"
   }
 }

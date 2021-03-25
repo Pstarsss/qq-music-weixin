@@ -16,6 +16,8 @@
 .singers{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: start;
 }
 .singer_name{
   font-size: 24rpx;

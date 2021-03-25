@@ -1,10 +1,49 @@
 <view class="homeContainer">
   <view class="header" catchtap="toSearch"> 
       <view class="searchTip">
+        <van-icon name="search" size="30rpx" color="#a9a9a9" />
         <text>搜索</text>
       </view>
   </view>
   <view class="Recommand">
+    <view class="R_head">
+      <view class="R_head_title">歌曲推荐</view>
+      <view class="R_head_more" catchtap="toMore">
+        <view class="R_head_more_text">更多</view>
+        <van-icon name="arrow" color="#a9a9a9" size="30rpx" />
+      </view>
+    </view>
+    <view class="R_list">
+      <block wx:for="{{songRecommend}}" wx:key="songId">
+        <view class="R_list_item">
+          <view class="R_item_img">
+            <image src="{{item.cover}}" mode="aspectFit"></image>
+          </view>
+          <view class="R_item_info"> 
+            <view class="R_info_title">{{item.title}}</view>
+            <view class="R_info_singer">
+              <text>{{item.singerName}}</text>
+              <text>{{item.title}}</text>
+            </view>
+          </view> 
+          <view class="R_more">
+            <van-icon name="arrow" color="#a9a9a9" size="30rpx" />
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="hot_R">
+    <view class="R_head">
+      <view class="R_head_title">热门歌单</view>
+      <view class="R_head_more">
+        <view class="R_head_more_text">更多</view>
+        <van-icon name="arrow" color="#a9a9a9" size="30rpx" />
+      </view>
+    </view>
+    <view class="hot_songlist">
+
+    </view>
   </view>
   <view class="Toplist">
     <view class="Toplist-text">巅峰榜</view>

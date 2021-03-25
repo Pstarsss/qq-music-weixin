@@ -14,7 +14,8 @@
         "pages/categorySongList/index",
         "pages/songDetail/index",
         "pages/songDetailList/index",
-        "pages/search/index"
+        "pages/search/index",
+        "pages/hotSong/index"
       ]
     }
   ],

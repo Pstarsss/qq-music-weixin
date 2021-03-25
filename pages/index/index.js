@@ -4,12 +4,14 @@ const api = require('../../router/api')
 
 Page({
   data: {
-    toplist:[]
+    toplist:[],
+    recomPlaylist:[],
+    topId:26, // 默认热歌榜
   },
   
   onLoad: function () {
-    this.getTopList()
     this.getRecommend();
+    this.getTopListDetail();
   },
   async getTopList(){
     let temp = await util.request(api.getSongListCategories,{},"get")
@@ -21,14 +23,55 @@ Page({
   },
   async getRecommend(){
     let temp = await util.request(api.getRecommend,{},"get")
-    console.log(temp);
+    let recomPlaylist = temp.data.response.recomPlaylist; //热门歌单
+    let officiallistid = 3317;
+    let toplist = temp.data.response.toplist.data.group[0].toplist.splice(0,3);
     this.setData({
-      ...temp.data.response
+      toplist,
+      recomPlaylist
+    })
+   
+  },
+  async getTopListDetail(){
+    let that = this;
+    let temp = await util.request(`${api.getRanks}?topId=${this.data.topId}`,{},"get");
+    this.setData({
+      songRecommend : temp.data.response.detail.data.data.song.splice(0,6)
+    },() => {
+     let seen = new Map();
+     let songRecommend = this.data.songRecommend.map((i,j) => {
+        if(!i.cover){
+          seen.set(j,util.request(`${api.getImageUrl}?id=${i.albumMid}`,{},"get"))
+        }
+        return i;
+      })
+      Promise.all(seen.values()).then((res) => {
+        let arr = res.map(i => {
+          return i.data.response.data.imageUrl;
+        });
+        songRecommend.map((i) => {
+          if(!i.cover){
+            i.cover = arr.splice(0,1);
+          }
+          return i;
+        }) 
+        that.setData({
+          songRecommend
+        },() => {
+          seen = null
+        })
+      })
+
     })
   },
   toSearch(){
     wx.navigateTo({
       url: '/packageSong/pages/search/index',
+    })
+  },
+  toMore(){
+    wx.navigateTo({
+      url: `/packageSong/pages/hotSong/index?topId=${this.data.topId}`,
     })
   }
 })
