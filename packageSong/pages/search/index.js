@@ -35,7 +35,6 @@ Page({
       case 0:
     }
   },
-  
   onInput(e){
     this.setData({
       currentKey:e.detail
