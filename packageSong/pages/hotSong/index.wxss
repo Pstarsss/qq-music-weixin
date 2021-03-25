@@ -1,1 +1,41 @@
-/* packageSong/pages/hotSong/index.wxss */
+.container{
+  padding:20rpx 32rpx;
+}
+.header{
+  font-size: 36rpx;
+  font-weight: bolder;
+  text-align: left;
+}
+.item{
+  height: 130rpx;
+  display: flex;
+  align-items: center;
+}
+.rank{
+  padding-right: 20rpx;
+}
+.song_info{
+  flex:1;
+}
+.item:nth-of-type(n+2){
+  border-top: 1rpx solid #ccccccbf
+}
+.song_name{
+  font-size: 28rpx;
+}
+.singers{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+.singer_name{
+  font-size: 24rpx;
+  padding-right: 20rpx;
+}
+.loading{
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

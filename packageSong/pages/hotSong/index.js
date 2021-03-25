@@ -1,66 +1,69 @@
-// packageSong/pages/hotSong/index.js
+import regeneratorRuntime from 'regenerator-runtime'
+const util = require('../../../utils/util')
+const api = require('../../../router/api')
+
+
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    limit:20,
+    page:1,
+    songlist:[],
+    total:0,
+    loading:false,
+    finished:false
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-
+    this.setData({
+      topId:options.topId
+    },() => {
+      this.getTopListDetail(false);
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function () {
-
+    if(!this.data.topId){
+      return ;
+    }
+    this.getKeyResource(false);
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
   onReachBottom: function () {
-
+    let that = this;
+    if(this.data.songlist.length >= this.data.total){
+      this.setData({
+        finished:true
+      })
+      return ;
+    };
+    this.setData({
+      page : this.data.page + 1
+    },() => {
+      that.getTopListDetail(true);
+    }) 
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  async getTopListDetail(loadmore){
+    this.setData({
+      loading:true
+    })
+    let temp = await util.request(`${api.getRanks}?topId=${this.data.topId}`,{},"get");
+    console.log(temp);
+    this.setData({
+      songlist : loadmore ? this.data.songlist.concat(temp.data.response.detail.data.data.song) : temp.data.response.detail.data.data.song,
+      total:temp.data.response.detail.data.data.totalNum,
+      loading:false
+    })
+  },
+  onClickItem(e){
+    let that = this;
+    let temp = e.currentTarget.dataset;
+    console.log(temp);
+    wx.navigateTo({
+      url: `/packageSong/pages/songDetail/index?mid=${temp.item.albumMid}&index=${temp.index}`,
+      success: function(res){
+        res.eventChannel.emit('tosongDetail',that.data.songlist)
+      }
+    })
   }
 })

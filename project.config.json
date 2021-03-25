@@ -107,6 +107,14 @@
           "id": -1,
           "name": "搜索框哦",
           "pathName": "packageSong/pages/search/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "热歌榜单",
+          "pathName": "packageSong/pages/hotSong/index",
+          "query": "topId=26",
           "scene": null
         }
       ]

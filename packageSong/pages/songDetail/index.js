@@ -39,6 +39,7 @@ Page({
       index: e.index
     },() => {
       that._update();
+      that.getAlbumInfo();
     });
     this.playingTime = fire.on('playingTime',(res) => {
       // 歌曲总时间只需算一次；需要优化
@@ -87,6 +88,9 @@ Page({
     music.play();
   },
   async getSongInfo(){
+    if(!this.data.songmid){
+      return false;
+    }
     let temp = await util.request(`${api.getSongInfo}?songmid=${this.data.songmid}`,{},"get");
     this.setData({
       songotherinfo:temp.data.response.songinfo.data.info,
@@ -94,6 +98,9 @@ Page({
     });
   },
   async getMusicPlay(){
+    if(!this.data.songmid){
+      return false;
+    }
     let that = this;
     if(that.data.songmid == globalData.song){
       return false;
@@ -125,9 +132,11 @@ Page({
     }
   },
   async getLyric(){
+    if(!this.data.songmid){
+      return false;
+    }
     let temp = await util.request(`${api.getLyric}?songmid=${this.data.songmid}`,{},"get");
     console.log('歌词',temp);
-
     let songlyric = temp.data.response.lyric.replace(new RegExp(/\[(\S*)\]/g),'').trim();
     songlyric = songlyric.replace(/<[^<>]+>/g, '');
     songlyric = songlyric.replace(/&nbsp;/ig, '').replace(/(\n[\s\t]*\r*\n)/g, '\n').replace(/^[\n\r\n\t]*|[\n\r\n\t]*$/g, '');
@@ -145,7 +154,18 @@ Page({
       imageUrl:temp.data.response.data.imageUrl,
     })
   },
-  
+  async getAlbumInfo(){
+    let that = this;
+    let temp = await util.request(`${api.getAlbumInfo}?albummid=${this.data.mid}`,{},"get");
+    console.log('专辑资源',temp);
+    this.setData({
+      songmid:temp.data.response.data.list[0].songmid,
+    },() => {
+      that.getLyric();
+      that.getMusicPlay();
+      that.getSongInfo();
+    })
+  },
   changeIndex(e){
     this.setData({
       currentIndex: e.target.dataset.index

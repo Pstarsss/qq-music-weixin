@@ -1,2 +1,24 @@
-<!--packageSong/pages/hotSong/index.wxml-->
-<text>packageSong/pages/hotSong/index.wxml</text>
+<view class="container">
+  <view class="header">热歌榜</view>
+  <view class="list" wx:if="{{songlist.length > 0}}">
+    <block wx:for="{{songlist}}" wx:key="id" wx:for-item="item1">
+      <view catchtap="onClickItem" data-index="{{index}}" class="item" data-item="{{item1}}">
+        <view class="rank">{{index + 1}}</view>
+        <view class="song_info">
+          <view class="song_name">{{item1.title}}</view>
+          <view class="singers">
+            <view class="singer_name">{{item1.singerName}}</view>
+            <view class="singer_name">{{item1.title}}</view>
+          </view> 
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="loading" wx:else>
+    <van-loading wx:if="{{loading}}" color="rgb(255,144,18)" size="24px">加载中...</van-loading>
+  </view>
+  <view wx:if="{{songlist.length > 0}}" class="loading">
+    <van-loading wx:if="{{true}}" size="18px" color="rgb(255,144,18)">加载中...</van-loading>
+    <view class="finish" wx:if="{{finished}}">~我也是有底线的哦~</view>
+  </view>
+</view>
