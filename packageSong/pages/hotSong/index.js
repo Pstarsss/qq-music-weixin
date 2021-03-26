@@ -60,7 +60,7 @@ Page({
     let temp = e.currentTarget.dataset;
     console.log(temp);
     wx.navigateTo({
-      url: `/packageSong/pages/songDetail/index?mid=${temp.item.albumMid}&index=${temp.index}`,
+      url: `/packageSong/pages/songDetail/index?mid=${temp.item.albumMid}&index=${temp.index}&resource=bangdan`,
       success: function(res){
         res.eventChannel.emit('tosongDetail',that.data.songlist)
       }

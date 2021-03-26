@@ -9,10 +9,14 @@ function init(src){
   console.log('innerAudioContext:',innerAudioContext.duration);
   innerAudioContext.onCanplay(() => {
     console.log('currentTime:',innerAudioContext.currentTime);
+    wx.nextTick(() => {
+
+    })
     console.log('duration:',innerAudioContext.duration);
     innerAudioContext.onTimeUpdate(() => {
       fire.fire('playingTime',{
-        currentTime:innerAudioContext.currentTime
+        currentTime:innerAudioContext.currentTime,
+        duration:innerAudioContext.duration,
       })
     });
     innerAudioContext.onEnded(() => {
@@ -24,7 +28,7 @@ function init(src){
     })
   })
   // pause();
-  return  innerAudioContext.duration;
+  // return  innerAudioContext;
 }
 function play(){
   innerAudioContext.play();

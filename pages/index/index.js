@@ -23,14 +23,16 @@ Page({
   },
   async getRecommend(){
     let temp = await util.request(api.getRecommend,{},"get")
-    let recomPlaylist = temp.data.response.recomPlaylist; //热门歌单
+    let recomPlaylist = temp.data.response.recomPlaylist.data.v_hot.map(i => {
+      i.listen_num = util.getwang(i.listen_num);
+      return i;
+    }); //热门歌单
     let officiallistid = 3317;
     let toplist = temp.data.response.toplist.data.group[0].toplist.splice(0,3);
     this.setData({
       toplist,
       recomPlaylist
-    })
-   
+    });
   },
   async getTopListDetail(){
     let that = this;
@@ -62,6 +64,14 @@ Page({
         })
       })
 
+    })
+  },
+  scroll(){
+    // console.log('12313');
+  },
+  onItemClick(e){
+    wx.navigateTo({
+      url: `/packageSong/pages/songDetailList/index?disstid=${e.currentTarget.dataset.item.content_id}`,
     })
   },
   toSearch(){

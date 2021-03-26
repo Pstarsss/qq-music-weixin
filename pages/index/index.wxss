@@ -1,3 +1,5 @@
+@import '/utils/css/iconfont.wxss';
+
 .homeContainer{
   background-color: #f1f1f1;
   min-height: 100vh;
@@ -49,9 +51,55 @@
 .R_item_info{
   flex:1;
   padding: 0 20rpx;
+  font-size: 26rpx;
 }
 .R_item_img image{
   width: 140rpx;
   height: 140rpx;
   border-radius: 18rpx;
 }
+.hot_songlist{
+  white-space: nowrap;
+  height: 300rpx;
+}
+.songitem{
+  display: inline-block;
+  padding-right: 12rpx;
+}
+.songimg{
+  width: 210rpx;
+  height: 210rpx;
+  border-radius: 20rpx;
+}
+.songcover{
+  position: relative;
+  display: flex;
+  margin-bottom: 10rpx;
+}
+.songcount{
+  position: absolute;
+  bottom: 0;
+  right: 5rpx;
+  background-color: #00000047;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 12rpx;
+}
+.sanjiao{
+  color: #fff;
+  font-size: 22rpx;
+  padding: 0 5rpx;
+}
+.amount{
+  font-size: 18rpx;
+  color: #fff;
+  padding-right: 5rpx;
+}
+.songname{
+  font-size: 22rpx;
+  max-width: 210rpx;
+  padding-bottom: 5rpx;
+  white-space: initial;
+}
+

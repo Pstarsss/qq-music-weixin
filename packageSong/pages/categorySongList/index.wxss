@@ -1,4 +1,4 @@
-@import '/utils/css/font.wxss';
+@import '/utils/css/iconfont.wxss';
 .container{
   width: 100%;
 }

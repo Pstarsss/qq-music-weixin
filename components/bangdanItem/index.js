@@ -17,6 +17,7 @@ Component({
   },
   lifetimes:{
     ready(){
+      
     }
   },
   /**
@@ -24,9 +25,8 @@ Component({
    */
   methods: {
     onClickItem(){
-      console.log(this.data.item);
       wx.navigateTo({
-        url: `/packageSong/pages/one/index?id=${this.data.item.id}`,
+        url: `/packageSong/pages/hotSong/index?topId=${this.data.item.topId}`,
       })
     }
   }

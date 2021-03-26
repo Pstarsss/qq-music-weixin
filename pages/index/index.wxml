@@ -41,9 +41,20 @@
         <van-icon name="arrow" color="#a9a9a9" size="30rpx" />
       </view>
     </view>
-    <view class="hot_songlist">
-
-    </view>
+      <scroll-view class="hot_songlist" scroll-x="{{true}}" bindscroll="scroll">
+        <block wx:for="{{recomPlaylist}}" wx:key="content_id">
+          <view class="songitem"  catchtap="onItemClick"  data-item="{{item}}">
+            <view class="songcover">
+              <image class="songimg" src="{{item.cover}}" mode="aspectFit"></image>
+              <view class="songcount">
+                <text class="iconfont icon-icon_play sanjiao" ></text>
+                <view class="amount">{{item.listen_num}}</view>
+              </view>
+            </view>
+            <view class="songname">{{item.title}}</view>
+          </view>
+        </block>
+      </scroll-view>
   </view>
   <view class="Toplist">
     <view class="Toplist-text">巅峰榜</view>

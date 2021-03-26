@@ -20,6 +20,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   max-width: 450rpx;
+  flex-wrap: wrap;
 }
 .ranks{
   color:#000000;

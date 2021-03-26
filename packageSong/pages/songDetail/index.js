@@ -36,10 +36,13 @@ Page({
     this.setData({
       songmid: e.id,
       mid: e.mid,
-      index: e.index
+      index: e.index,
+      resource:e.resource
     },() => {
       that._update();
-      that.getAlbumInfo();
+      if(!this.data.songmid){
+        that.getAlbumInfo();
+      }
     });
     this.playingTime = fire.on('playingTime',(res) => {
       // 歌曲总时间只需算一次；需要优化
@@ -47,6 +50,8 @@ Page({
         currentTime_copy:res,
         currentTime: util.timeformat(res.currentTime),
         step:(res.currentTime).toFixed(0),
+        duration:util.timeformat(res.duration),
+        max: res.duration.toFixed(0),
       })
     });
     this.endMusic = fire.on('endMusic',() => {
@@ -69,22 +74,28 @@ Page({
   },
   _update_index(index){
     let that = this;
-    that.setData({
-      info: that.data.songlist[index],
-      songmid: that.data.songlist[index].mid,
-      mid: that.data.songlist[index].album.mid,
-      index: index,
-    }, () => {
-      that._update();
-    })
+    if(this.data.resource){
+      that.setData({
+        info: that.data.songlist[index],
+        mid: that.data.songlist[index].albumMid,
+        index: index,
+      }, () => {
+        that.getAlbumInfo();
+      })
+    } else{
+      that.setData({
+        info: that.data.songlist[index],
+        songmid: that.data.songlist[index].mid,
+        mid: that.data.songlist[index].album.mid,
+        index: index,
+      }, () => {
+        that._update();
+      })
+    }
+    
   },
   bofang(){
-    let result = music.init(this.data.playUrl);
-
-    this.setData({
-      duration:util.timeformat(result),
-      max: result.toFixed(0),
-    });
+    music.init(this.data.playUrl);
     music.play();
   },
   async getSongInfo(){
@@ -117,11 +128,11 @@ Page({
     }
     let temp = await util.request(`${api.getMusicPlay}?songmid=${that.data.songmid}&justPlayUrl=all`,{},"get");
     console.log('getMusicPlay',temp.data.data.playUrl);
-    let result_url = temp.data.data.playUrl;
+    let result_url = temp.data.data.playUrl[`${that.data.songmid}`].url;
     if(result_url){
       that.setData({
-        playUrl:temp.data.data.playUrl[`${that.data.songmid}`].url,
-        [`songlist[${this.data.index}].url`]:temp.data.data.playUrl[`${this.data.songmid}`].url
+        playUrl:result_url,
+        [`songlist[${this.data.index}].url`]:result_url
       },() => {
         globalData.song = that.data.songmid;
         that.bofang();
