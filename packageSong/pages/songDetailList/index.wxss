@@ -45,7 +45,7 @@
   padding-right: 5rpx;
 }
 .dissname{
-  font-size: 36rpx;
+  font-size: 34rpx;
   max-width: 360rpx;
   color: #ffffffd4;
   font-weight: 500;
@@ -89,7 +89,7 @@
   padding:20rpx 0;
 }
 .rank{
-  font-size:32rpx;
+  font-size:30rpx;
   width: 40rpx;
   display: flex;
   justify-content: center;
@@ -99,7 +99,7 @@
   width: 460rpx;
 }
 .song_name{
-
+  font-size: 28rpx;
 }
 .singerabl{
   display: flex;
@@ -107,11 +107,17 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: 24rpx;
 }
 .singerss{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.singerabl_title{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 320rpx;
 }
 .choose{
   padding: 0 10rpx;

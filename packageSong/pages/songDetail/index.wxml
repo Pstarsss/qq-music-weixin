@@ -13,7 +13,7 @@
   </van-tab>
 </van-tabs>
 </view> -->
-<view class="container">
+<view class="container" style="background:url('{{imageUrl}}');background-size:cover;background-size:center;">
   <van-sticky z-index="{{2}}">
     <view class="tabs" catchtap="changeIndex">
       <view class="{{currentIndex == 0 ? 'title-active-color' : 'title-inactive-color'}} tabItem" data-index="{{0}}">歌曲</view>

@@ -11,10 +11,12 @@ Page({
   },
   async getTopList(){
     let temp = await util.request(api.getSongListCategories,{},"get")
-    temp.data.response.data.categories = temp.data.response.data.categories.map((i,j)=> {
+    temp.data.response.data.categories = temp.data.response.data.
+    categories.map((i,j)=> {
       i.id == j
       return i;
     })
+    console.log('temp,',temp)
     this.setData({
       categoryList : temp.data.response.data.categories
     },() => {

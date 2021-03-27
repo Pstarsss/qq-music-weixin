@@ -1,7 +1,7 @@
 @import '/utils/css/iconfont.wxss';
 .container{
   min-height:100vh;
-  background-image: linear-gradient(45deg, rgb(40,40,40),rgb(60,60,60),rgb(80,80,80),rgb(100,100,100),rgb(120,120,120));
+  /* background-image: linear-gradient(45deg, rgb(40,40,40),rgb(60,60,60),rgb(80,80,80),rgb(100,100,100),rgb(120,120,120)); */
 }
 .tabs{
   display: flex;
@@ -92,7 +92,8 @@
 
 #lyric{
   height: calc( 100vh - 120rpx );
-  padding-left: 120rpx;
+  /* padding-left: 120rpx; */
+  padding: 0 32rpx 0 64rpx;
   line-height: 60rpx;
   color:#ffffff8c;
   overflow: hidden;
@@ -102,7 +103,7 @@
   height: 150rpx;
 }
 ._lyric-header-name{
-  font-size: 44rpx;
+  font-size: 40rpx;
 }
 ._lyric-singer{
   font-size: 22rpx;
@@ -119,7 +120,7 @@
 }
 ._lyric-body{
   white-space:pre-wrap;
-  font-size: 30rpx;
+  font-size: 28rpx;
   overflow: scroll;
   position: absolute;
   transition: all 0.3s;

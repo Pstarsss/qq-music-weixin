@@ -36,7 +36,7 @@
   <view class="hot_R">
     <view class="R_head">
       <view class="R_head_title">热门歌单</view>
-      <view class="R_head_more">
+      <view class="R_head_more" catchtap="hot_more">
         <view class="R_head_more_text">更多</view>
         <van-icon name="arrow" color="#a9a9a9" size="30rpx" />
       </view>
@@ -52,6 +52,29 @@
               </view>
             </view>
             <view class="songname">{{item.title}}</view>
+          </view>
+        </block>
+      </scroll-view>
+  </view>
+  <view class="hot_R">
+    <view class="R_head">
+      <view class="R_head_title">官方歌单</view>
+      <view class="R_head_more" catchtap="off_more">
+        <view class="R_head_more_text">更多</view>
+        <van-icon name="arrow" color="#a9a9a9" size="30rpx" />
+      </view>
+    </view>
+      <scroll-view class="hot_songlist" scroll-x="{{true}}" bindscroll="scroll">
+        <block wx:for="{{officialList}}" wx:key="dissid">
+          <view class="songitem"  catchtap="onItemClick2"  data-item="{{item}}">
+            <view class="songcover">
+              <image class="songimg" src="{{item.imgurl}}" mode="aspectFit"></image>
+              <view class="songcount">
+                <text class="iconfont icon-icon_play sanjiao" ></text>
+                <view class="amount">{{item.listennum}}</view>
+              </view>
+            </view>
+            <view class="songname">{{item.dissname}}</view>
           </view>
         </block>
       </scroll-view>

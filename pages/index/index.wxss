@@ -4,7 +4,7 @@
   background-color: #f1f1f1;
   min-height: 100vh;
   box-sizing: border-box;
-  padding:0 32rpx;
+  padding:0 32rpx 32rpx;
 }
 .header{
   padding:10rpx 0;

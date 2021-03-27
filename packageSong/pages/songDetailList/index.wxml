@@ -1,4 +1,4 @@
-<view class="container">
+<view class="container" style="background:url('{{info.logo}}');background-size:cover;background-size:center;">
   <view class="introduce">
     <view class="imageText">
         <view class="leftpart"> 
@@ -43,7 +43,7 @@
               <view wx:for="{{item.singer}}" wx:key="id"  wx:for-item="iitem"
               wx:for-index="iindex">{{iindex == 0 ? "":"-"}}{{iitem.name}}</view>
             </view>
-            <view>{{item.album.name}}</view>
+            <view class="singerabl_title">{{item.album.name}}</view>
           </view>
         </view>
         <van-icon data-item="{{item}}" catchtap="playMusic" class="play" name="play-circle-o" size="48rpx" />

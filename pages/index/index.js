@@ -12,6 +12,7 @@ Page({
   onLoad: function () {
     this.getRecommend();
     this.getTopListDetail();
+    this.getSongLists();
   },
   async getTopList(){
     let temp = await util.request(api.getSongListCategories,{},"get")
@@ -23,6 +24,7 @@ Page({
   },
   async getRecommend(){
     let temp = await util.request(api.getRecommend,{},"get")
+    console.log('全部',temp);
     let recomPlaylist = temp.data.response.recomPlaylist.data.v_hot.map(i => {
       i.listen_num = util.getwang(i.listen_num);
       return i;
@@ -66,12 +68,28 @@ Page({
 
     })
   },
+  async getSongLists(){
+    let temp = await util.request(`${api.getSongLists}?categoryId=6&limit=12&sortId=2&page=2`,{},"get");
+    console.log('官方',temp);
+    temp.data.response.data.list = temp.data.response.data.list.map(i => {
+      i.listennum = util.getwang(i.listennum);
+      return i;
+    })
+    this.setData({
+      officialList : temp.data.response.data.list,
+    })
+  },
   scroll(){
     // console.log('12313');
   },
   onItemClick(e){
     wx.navigateTo({
       url: `/packageSong/pages/songDetailList/index?disstid=${e.currentTarget.dataset.item.content_id}`,
+    })
+  },
+  onItemClick2(e){
+    wx.navigateTo({
+      url: `/packageSong/pages/songDetailList/index?disstid=${e.currentTarget.dataset.item.dissid}`,
     })
   },
   toSearch(){
@@ -82,6 +100,16 @@ Page({
   toMore(){
     wx.navigateTo({
       url: `/packageSong/pages/hotSong/index?topId=${this.data.topId}`,
+    })
+  },
+  hot_more(){
+    wx.navigateTo({
+      url: `/packageSong/pages/categorySongList/index?categoryId=10000000&categoryName='为你推荐'`
+    })
+  },
+  off_more(){
+    wx.navigateTo({
+      url: `/packageSong/pages/categorySongList/index?categoryId=6&categoryName='官方歌单'`
     })
   }
 })
