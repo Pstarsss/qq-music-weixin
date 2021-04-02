@@ -10,6 +10,7 @@
     <van-search
       value="{{ currentKey }}"
       placeholder="搜索 音乐/视频/歌手/歌单"
+      placeholder-style="font-size:24rpx;"
       show-action ="{{show_action}}"
       bind:search="onSearch"
       bind:cancel="onCancel"
@@ -22,7 +23,7 @@
   </view>
   <view wx:if="{{!currentKey}}" class="hotkey">
     <block wx:for="{{hotkey}}" wx:key="*this">
-      <view class="key_item" catchtap="onClickItem" data-item="{{item.k}}">{{item.k}}</view>
+      <view class="key_item {{index < 5 ? 'special' : ''}}" catchtap="onClickItem" data-item="{{item.k}}">{{item.k}}</view>
     </block>
   </view>
   <view wx:if="{{keyResource && currentKey}}" class="tabs">
@@ -31,9 +32,9 @@
       <van-tab title="歌曲">
         <key_song id="kSong"currentKey="{{currentKey}}" ></key_song>
       </van-tab>
-      <van-tab title="视频">
+      <!-- <van-tab title="视频">
         <key_mv id="kMv"  currentKey="{{currentKey}}" ></key_mv>
-      </van-tab>
+      </van-tab> -->
     </van-tabs>
   </view>
 </view>

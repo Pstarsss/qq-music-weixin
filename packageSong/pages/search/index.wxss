@@ -20,8 +20,17 @@
 }
 .px_search{
   padding: 10px 32rpx !important;
+  font-size: 24rpx !important;
 }
-
+.van-field__control{
+  font-size: 28rpx;
+}
+.van-tabs__wrap{
+  height:40px !important;
+}
+.special{
+  color:#ff003b;
+}
 .hotkey{
   display: flex;
   flex-wrap: wrap;

@@ -1,4 +1,7 @@
 <view class="container">
+  <view class="allPlayed">
+    
+  </view>
   <view class="list" wx:if="{{songlist.length > 0}}">
     <block wx:for="{{songlist}}" wx:key="id" wx:for-item="item1">
       <view catchtap="onClickItem" data-index="{{index}}" class="item" data-item="{{item1}}">
