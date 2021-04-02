@@ -27,27 +27,28 @@ Page({
 
   },
   onPullDownRefresh: function () {
-    let temp = '';
-    switch (this.data.currentIndex){
-      case 0: temp = this.selectComponent('#kSong'); break;
-      case 1: temp = this.selectComponent('#kmv'); break;
-    }
-    if(!temp){
-      return;
-    }
-    temp.onPullDownRefresh();
+    // let temp = '';
+    // switch (this.data.currentIndex){
+    //   case 0: temp = this.selectComponent('#kSong'); break;
+    //   case 1: temp = this.selectComponent('#kmv'); break;
+    // }
+    // if(!temp){
+    //   return;
+    // }
+    // temp.onPullDownRefresh();
+    this.selectComponent('#kSong').onPullDownRefresh();
   },
   onReachBottom: function(){
-    let temp = '';
-    switch (this.data.currentIndex){
-      case 0: temp = this.selectComponent('#kSong'); break;
-      case 1: temp = this.selectComponent('#kmv'); break;
-    }
-    if(!temp){
-      return;
-    }
-    console.log(temp);
-    temp.onReachBottom();
+    // let temp = '';
+    // switch (this.data.currentIndex){
+    //   case 0: temp = this.selectComponent('#kSong'); break;
+    //   case 1: temp = this.selectComponent('#kmv'); break;
+    // }
+    // if(!temp){
+    //   return;
+    // }
+    // temp.onReachBottom();
+    this.selectComponent('#kSong').onReachBottom();
   },
   onInput(e){
     this.setData({
@@ -87,9 +88,9 @@ Page({
     })
     console.log('getKeyResource:',result);
   },
-  onChange(e){
-    this.setData({
-      currentIndex:e.detail.index
-    })
-  }
+  // onChange(e){
+  //   this.setData({
+  //     currentIndex:e.detail.index
+  //   })
+  // }
 })

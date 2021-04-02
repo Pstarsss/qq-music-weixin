@@ -1,9 +1,18 @@
 <view class="homeContainer">
   <view class="header" catchtap="toSearch"> 
       <view class="searchTip">
-        <van-icon name="search" size="30rpx" color="#a9a9a9" />
-        <text>搜索</text>
+        <van-icon custom-class="search_icon" name="search" size="30rpx" color="#a9a9a9" />
+        <text class="search_text">搜索</text>
       </view>
+  </view>
+  <view class="_swiper_box">
+    <swiper indicator-dots="true" autoplay="{{true}}" circular="{{false}}" indicator-active-color="#fafafa" indicator-color="#cccccc59" class="_swiper">
+      <block wx:for="{{swiperlist}}" wx:key="id">
+        <swiper-item class="swiper_item">
+          <image class="swiper_image" src="{{item.pic_info.url}}" mode="widthFix"></image>
+        </swiper-item>
+      </block>
+    </swiper>
   </view>
   <view class="Recommand">
     <view class="R_head">
@@ -15,7 +24,7 @@
     </view>
     <view class="R_list">
       <block wx:for="{{songRecommend}}" wx:key="songId">
-        <view class="R_list_item">
+        <view class="R_list_item" catchtap="onItemClick_songRecommend" data-item="{{item}}" data-index="{{index}}">
           <view class="R_item_img">
             <image src="{{item.cover}}" mode="aspectFit"></image>
           </view>
@@ -41,20 +50,20 @@
         <van-icon name="arrow" color="#a9a9a9" size="30rpx" />
       </view>
     </view>
-      <scroll-view class="hot_songlist" scroll-x="{{true}}" bindscroll="scroll">
-        <block wx:for="{{recomPlaylist}}" wx:key="content_id">
-          <view class="songitem"  catchtap="onItemClick"  data-item="{{item}}">
-            <view class="songcover">
-              <image class="songimg" src="{{item.cover}}" mode="aspectFit"></image>
-              <view class="songcount">
-                <text class="iconfont icon-icon_play sanjiao" ></text>
-                <view class="amount">{{item.listen_num}}</view>
-              </view>
+    <scroll-view class="hot_songlist" scroll-x="{{true}}" bindscroll="scroll">
+      <block wx:for="{{recomPlaylist}}" wx:key="content_id">
+        <view class="songitem"  catchtap="onItemClick_recomPlaylist"  data-item="{{item}}">
+          <view class="songcover">
+            <image class="songimg" src="{{item.cover}}" mode="aspectFit"></image>
+            <view class="songcount">
+              <text class="iconfont icon-icon_play sanjiao" ></text>
+              <view class="amount">{{item.listen_num}}</view>
             </view>
-            <view class="songname">{{item.title}}</view>
           </view>
-        </block>
-      </scroll-view>
+          <view class="songname">{{item.title}}</view>
+        </view>
+      </block>
+    </scroll-view>
   </view>
   <view class="hot_R">
     <view class="R_head">
@@ -64,23 +73,42 @@
         <van-icon name="arrow" color="#a9a9a9" size="30rpx" />
       </view>
     </view>
-      <scroll-view class="hot_songlist" scroll-x="{{true}}" bindscroll="scroll">
-        <block wx:for="{{officialList}}" wx:key="dissid">
-          <view class="songitem"  catchtap="onItemClick2"  data-item="{{item}}">
-            <view class="songcover">
-              <image class="songimg" src="{{item.imgurl}}" mode="aspectFit"></image>
-              <view class="songcount">
-                <text class="iconfont icon-icon_play sanjiao" ></text>
-                <view class="amount">{{item.listennum}}</view>
-              </view>
+    <scroll-view class="hot_songlist" scroll-x="{{true}}" bindscroll="scroll">
+      <block wx:for="{{officialList}}" wx:key="dissid">
+        <view class="songitem"  catchtap="onItemClick_officialList"  data-item="{{item}}">
+          <view class="songcover">
+            <image class="songimg" src="{{item.imgurl}}" mode="aspectFit"></image>
+            <view class="songcount">
+              <text class="iconfont icon-icon_play sanjiao" ></text>
+              <view class="amount">{{item.listennum}}</view>
             </view>
-            <view class="songname">{{item.dissname}}</view>
           </view>
-        </block>
-      </scroll-view>
+          <view class="songname">{{item.dissname}}</view>
+        </view>
+      </block>
+    </scroll-view>
   </view>
   <view class="Toplist">
-    <view class="Toplist-text">巅峰榜</view>
+    <view class="Toplist-text">
+      <view class="Toplist-text_name">巅峰榜</view>
+      <view class="fire">
+        <view class="fire-left">
+            <view class="main-fire"></view>
+            <view class="particle-fire"></view>
+        </view>
+        <view class="fire-main">
+            <view class="main-fire"></view>
+            <view class="particle-fire"></view>
+        </view>
+        <view class="fire-right">
+            <view class="main-fire"></view>
+            <view class="particle-fire"></view>
+        </view>
+        <view class="fire-bottom">
+            <view class="main-fire"></view>
+        </view>
+      </view>
+    </view>
     <block wx:for="{{toplist}}" wx:key="id">
       <bangdanitem item="{{item}}"></bangdanitem>
     </block>

@@ -23,7 +23,7 @@
   font-size: 24rpx !important;
 }
 .van-field__control{
-  font-size: 28rpx;
+  font-size: 24rpx;
 }
 .van-tabs__wrap{
   height:40px !important;

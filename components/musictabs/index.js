@@ -12,11 +12,11 @@ Component({
   properties: {
     songmid:{
       type:String,
-      value:''
+      value: ''
     },
     albummid:{
       type:String,
-      value:''
+      value: ''
     },
     opacity:{
       type:Number,
@@ -24,7 +24,7 @@ Component({
     },
     songinfo:{
       type:Object,
-      value:{}
+      value: {}
     }
   },
 
@@ -72,7 +72,6 @@ Component({
         }
         globalData.song = this.data.songmid;
         music.init(this.data.playUrl);
-        music.play();
       })
     },
     async getImageUrl(){

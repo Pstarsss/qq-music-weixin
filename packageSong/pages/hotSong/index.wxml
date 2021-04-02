@@ -18,7 +18,7 @@
     <van-loading wx:if="{{loading}}" color="rgb(255,144,18)" size="24px">加载中...</van-loading>
   </view>
   <view wx:if="{{songlist.length > 0}}" class="loading">
-    <van-loading wx:if="{{true}}" size="18px" color="rgb(255,144,18)">加载中...</van-loading>
+    <van-loading wx:if="{{loading}}" size="18px" color="rgb(255,144,18)">加载中...</van-loading>
     <view class="finish" wx:if="{{finished}}">~我也是有底线的哦~</view>
   </view>
 </view>

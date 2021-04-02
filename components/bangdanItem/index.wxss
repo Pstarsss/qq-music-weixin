@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   padding-left: 20rpx;
-  background-color: #cccccc75;
+  background-color: #fafafa;
   margin-bottom: 20rpx;
   border-radius: 16rpx;
 }

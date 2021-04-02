@@ -175,6 +175,7 @@ Page({
       that.getLyric();
       that.getMusicPlay();
       that.getSongInfo();
+      that.getImageUrl();
     })
   },
   changeIndex(e){

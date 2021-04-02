@@ -58,7 +58,6 @@ Page({
   onClickItem(e){
     let that = this;
     let temp = e.currentTarget.dataset;
-    console.log(temp);
     wx.navigateTo({
       url: `/packageSong/pages/songDetail/index?mid=${temp.item.albumMid}&index=${temp.index}&resource=bangdan`,
       success: function(res){

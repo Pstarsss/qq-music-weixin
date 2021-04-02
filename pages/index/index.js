@@ -4,8 +4,9 @@ const api = require('../../router/api')
 
 Page({
   data: {
-    toplist:[],
-    recomPlaylist:[],
+    toplist: [],
+    recomPlaylist: [],
+    swiperlist: [],
     topId:26, // 默认热歌榜
   },
   
@@ -29,11 +30,13 @@ Page({
       i.listen_num = util.getwang(i.listen_num);
       return i;
     }); //热门歌单
-    let officiallistid = 3317;
-    let toplist = temp.data.response.toplist.data.group[0].toplist.splice(0,3);
+    let toplist = temp.data.response.toplist.data.group[0].toplist.splice(0,3); // 榜单
+    
+    let swiperlist = temp.data.response.focus.data.content;
     this.setData({
       toplist,
-      recomPlaylist
+      recomPlaylist,
+      swiperlist
     });
   },
   async getTopListDetail(){
@@ -80,16 +83,25 @@ Page({
     })
   },
   scroll(){
-    // console.log('12313');
   },
-  onItemClick(e){
+  onItemClick_recomPlaylist(e){
     wx.navigateTo({
       url: `/packageSong/pages/songDetailList/index?disstid=${e.currentTarget.dataset.item.content_id}`,
     })
   },
-  onItemClick2(e){
+  onItemClick_officialList(e){
     wx.navigateTo({
       url: `/packageSong/pages/songDetailList/index?disstid=${e.currentTarget.dataset.item.dissid}`,
+    })
+  },
+  onItemClick_songRecommend(e){
+    let that = this;
+    let temp = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `/packageSong/pages/songDetail/index?mid=${temp.item.albumMid}&index=${temp.index}&resource=recommand`,
+      success: function(res){
+        res.eventChannel.emit('tosongDetail',that.data.songRecommend)
+      }
     })
   },
   toSearch(){

@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "van-icon": "@vant/weapp/icon/index",
-    "musictab": "/components/musictabs/index"
+    "van-icon": "@vant/weapp/icon/index"
   }
 }

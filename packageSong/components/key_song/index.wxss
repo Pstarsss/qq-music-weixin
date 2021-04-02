@@ -1,8 +1,22 @@
+@import '/utils/css/iconfont.wxss';
+
 .container{
   padding:20rpx 32rpx;
 }
+.allPlayed{
+
+}
+.all_left{
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0;
+}
+.search_total{
+  font-size:24rpx;
+  padding-left: 20rpx;
+}
 .item{
-  height: 130rpx;
+  min-height: 130rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -23,6 +37,7 @@
   font-size: 24rpx;
   padding-right: 20rpx;
 }
+
 .loading{
   height: 50rpx;
   display: flex;

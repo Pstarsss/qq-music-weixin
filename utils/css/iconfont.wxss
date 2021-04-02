@@ -91,3 +91,10 @@
   content: "\e60f";
 }
 
+.icon-liebiao:before {
+  content: "\e640";
+}
+
+.icon-bofang:before {
+  content: "\e700";
+}

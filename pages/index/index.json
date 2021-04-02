@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText":"QQ 音乐",
-  "navigationBarBackgroundColor":"#efefef",
+  "navigationBarBackgroundColor":"#f6f6f6",
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-icon": "@vant/weapp/icon/index",

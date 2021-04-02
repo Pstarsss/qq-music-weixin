@@ -27,14 +27,17 @@
     </block>
   </view>
   <view wx:if="{{keyResource && currentKey}}" class="tabs">
+    <key_song id="kSong" currentKey="{{currentKey}}" ></key_song>
+
     <!-- title-active-color="#28ef28" -->
-    <van-tabs  title-active-color="#28ef28"  active="{{ currentIndex }}" line-width="30px"  bind:change="onChange">
+    <!-- <van-tabs  title-active-color="#28ef28"  active="{{ currentIndex }}" line-width="30px"  bind:change="onChange">
       <van-tab title="歌曲">
         <key_song id="kSong"currentKey="{{currentKey}}" ></key_song>
       </van-tab>
-      <!-- <van-tab title="视频">
+      <van-tab title="视频">
         <key_mv id="kMv"  currentKey="{{currentKey}}" ></key_mv>
-      </van-tab> -->
-    </van-tabs>
+      </van-tab>
+    </van-tabs> -->
   </view>
 </view>
+<musictab opacity="1"></musictab>

@@ -1,6 +1,9 @@
 <view class="container">
   <view class="allPlayed">
-    
+    <view class="all_left">
+      <view class="iconfont icon-bofang2"></view>
+      <view class="search_total">全部查询结果({{total}})</view>
+    </view>
   </view>
   <view class="list" wx:if="{{songlist.length > 0}}">
     <block wx:for="{{songlist}}" wx:key="id" wx:for-item="item1">

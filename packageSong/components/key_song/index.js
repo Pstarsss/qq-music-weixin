@@ -12,7 +12,7 @@ Component({
   },
 
   data: {
-    limit:20,
+    limit:300,
     page:1,
     songlist:[],
     total:0,
@@ -49,7 +49,7 @@ Component({
       this.setData({
         loading:true
       })
-      let result = await util.request(`${api.getSearchByKey}?key=${this.data.currentKey}`,{},"get");
+      let result = await util.request(`${api.getSearchByKey}?key=${this.data.currentKey}$page=${this.data.page}`,{},"get");
       if(parseInt(result.statusCode) >= 400){
         this.setData({
           loading:false
@@ -60,6 +60,8 @@ Component({
         songlist: loadmore ? this.data.songlist.concat(result.data.response.data.song.list) : result.data.response.data.song.list,
         total:result.data.response.data.song.totalnum,
         loading:false
+      }, () => {
+        console.log('songlist',this.data.songlist)
       })
     },
     onClickItem(e){

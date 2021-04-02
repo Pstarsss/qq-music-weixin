@@ -1,4 +1,4 @@
-<view class="container" style="background:url('{{info.logo}}');background-size:cover;background-size:center;">
+<view class="container" style="background:url('{{info.logo}}');background-size:cover;background-size:200%;">
   <view class="introduce">
     <view class="imageText">
         <view class="leftpart"> 
