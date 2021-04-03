@@ -1,5 +1,6 @@
 {
   "enablePullDownRefresh": true,
+  "navigationBarTitleText": "歌单列表",
   "usingComponents": {
     "van-loading": "@vant/weapp/loading/index"
   }

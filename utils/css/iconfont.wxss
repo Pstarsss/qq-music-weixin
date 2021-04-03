@@ -95,6 +95,3 @@
   content: "\e640";
 }
 
-.icon-bofang:before {
-  content: "\e700";
-}

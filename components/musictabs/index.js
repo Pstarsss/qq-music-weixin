@@ -82,7 +82,6 @@ Component({
       })
     },
     onChangeStatus(){
-      console.log(this.data.played);
       this.setData({
         played: !this.data.played
       })
