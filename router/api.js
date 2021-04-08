@@ -3,7 +3,11 @@
 // let defaultUrl = 'http://localhost:3200';
 let defaultUrl = 'http://192.168.2.200:3200';
 
+<<<<<<< HEAD
 // let defaultUrl = 'http://10.0.13.242:3200';
+=======
+let defaultUrl = 'http://10.0.13.242:3200';
+>>>>>>> 7f2572759bf6da3d2b5b1e0c6b460c63c17ea41d
 // let defaultUrl = 'http://192.168.2.171:3200';
 
 

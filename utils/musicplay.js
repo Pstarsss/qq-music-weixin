@@ -1,70 +1,85 @@
 const fire = require('./onfire')
+
 let innerAudioContext = wx.createInnerAudioContext();
 innerAudioContext.autoplay = true; 
 innerAudioContext.loop = false; // 默认不单曲循环
-innerAudioContext.volume = 0.2;
+innerAudioContext.volume = 0.5;
+
 
 function init(src){
   innerAudioContext.src = src || '';
-  console.log('innerAudioContext:',innerAudioContext.duration);
+
   innerAudioContext.onCanplay(() => {
     console.log('currentTime:',innerAudioContext.currentTime);
-    wx.nextTick(() => {
-
-    })
     console.log('duration:',innerAudioContext.duration);
-    innerAudioContext.onTimeUpdate(() => {
-      fire.fire('playingTime',{
-        currentTime:innerAudioContext.currentTime,
-        duration:innerAudioContext.duration,
-      })
-    });
-    innerAudioContext.onEnded(() => {
-       console.log('onEnded');
-       console.log('loop',innerAudioContext.loop);
-       if(!innerAudioContext.loop){
-          fire.fire('endMusic');
-       }
-    })
+    watchCurrentmusicProgress();
+    watchCurrentmusicIsEnd();
   })
   // pause();
   // return  innerAudioContext;
 }
+
+//  播放
 function play(){
   innerAudioContext.play();
   innerAudioContext.onPlay(() => {
-    // console.log('开始播放')
   })
-  
-
   innerAudioContext.onError((res) => {
     console.log('onError:',res.errMsg)
     console.log('onError:',res.errCode)
   })
 }
+
+// 暂停
 function pause(){
   innerAudioContext.onPause(() => {
-    // console.log('暂停了')
   })
   innerAudioContext.pause();
 };
 
+
+
+// 指定进度条  跳转
 function seek(number){
   innerAudioContext.seek(number);
 }
+
+// 歌曲是否循环
 function setLoop(){
   innerAudioContext.loop = !innerAudioContext.loop;
 }
 
+// 设置音量
 function setVolume(value){
   innerAudioContext.volume = value;
 }
-
+// 获取歌曲播放总长时间
 function getMusicDuration() {
   return innerAudioContext.duration;
 }
 
+// 监听当前歌曲是否结束
+function watchCurrentmusicIsEnd(){
+  innerAudioContext.onEnded(() => {
+    console.log('onEnded');
+    console.log('loop',innerAudioContext.loop);
+    if(!innerAudioContext.loop){
+       fire.fire('endMusic');
+    }
+ })
+}
 
+// 监听当前歌曲播放的进度 获取当前播放时间
+function watchCurrentmusicProgress(){
+  innerAudioContext.onTimeUpdate(() => {
+    fire.fire('playingTime',{
+      currentTime:innerAudioContext.currentTime,
+      duration:innerAudioContext.duration,
+    })
+  });
+}
+
+// 销毁当前歌曲对象
 function destroy(){
   innerAudioContext.destroy();
 }

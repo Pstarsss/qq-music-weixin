@@ -20,7 +20,6 @@
   content: "\e670";
 }
 .playbar{
-  width: calc( 100vw - 100rpx );
   position: fixed;
   bottom:0;
   display: flex;
@@ -28,7 +27,6 @@
   background-color: rgb(183,193,206);
   border-radius: 50rpx;
   transition: all 0.5s;
-  margin-left: 50rpx;
 }
 .playbar_cd {
   color: rgba(22, 22, 22, 0.86);
