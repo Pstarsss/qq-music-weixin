@@ -61,6 +61,12 @@ Page({
   onUnload: function () {
     fire.un(this.endMusic);
     fire.un(this.playingTime);
+    
+    fire.fire('showMusicTab',{
+      index: this.data.index,
+      songlist: this.data.songlist
+    });
+    console.log('fire');
   },
   onPullDownRefresh: function () {
     this._update();

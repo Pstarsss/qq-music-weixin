@@ -49,6 +49,12 @@ Component({
     //     })
     //   })
     // }
+    created() {
+      console.log('123123');
+      this.showMusicTab = fire.on('showMusicTab',(res) => {
+        console.log('res',res);
+      })
+    }
   },
   /**
    * 组件的方法列表

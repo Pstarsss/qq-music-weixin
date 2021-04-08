@@ -1,6 +1,7 @@
 import regeneratorRuntime from 'regenerator-runtime'
-const util = require('../../utils/util')
-const api = require('../../router/api')
+const util = require('../../utils/util');
+const api = require('../../router/api');
+const fire = require('../../utils/onfire');
 
 Page({
   data: {
@@ -15,6 +16,14 @@ Page({
     this.getTopListDetail();
     this.getSongLists();
   },
+
+  // onShow: function () {
+  //   console.log('123123');
+  //   this.showMusicTab = fire.on('showMusicTab',(res) => {
+  //     console.log('res',res);
+  //   })
+  // },
+
   async getTopList(){
     let temp = await util.request(api.getSongListCategories,{},"get")
     console.log(temp);
