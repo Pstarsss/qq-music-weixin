@@ -47,7 +47,7 @@ Component({
     //       step:((res.currentTime).toFixed(0) / res.duration.toFixed(0)) * 100,
     //       max: res.duration.toFixed(0)
     //     })
-    //   })
+    //   }) 
     // }
   },
   /**

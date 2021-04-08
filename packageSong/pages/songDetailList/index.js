@@ -30,8 +30,6 @@ Page({
           info: that.data.songlist[this.data.index + 1]
         })
       }
-      that.getMusicPlay();
-      that.getImageUrl();
     })
   },
   onUnload: function(){
@@ -68,6 +66,7 @@ Page({
   playMusic(e){
     let temp = e.currentTarget.dataset.item;
     let index = e.currentTarget.dataset.item;
+
     this.setData({
       songmid: temp.mid,
       albummid: temp.album.mid,
@@ -81,25 +80,26 @@ Page({
       })
     })
   },
-  async getMusicPlay(){
-    if(this.data.songmid == globalData.song){
-      return ;
-    }
-    let temp = await util.request(`${api.getMusicPlay}?songmid=${this.data.songmid}&justPlayUrl=all`,{},"get");
-    this.setData({
-      playUrl:temp.data.data.playUrl[`${this.data.songmid}`].url
-    },() => {
-      if(!this.data.playUrl){
-        util.pxshowErrorToast('抱歉，暂无该歌曲资源',1000);
-        return ;
-      }
-    })
-  },
-  async getImageUrl(){
-    let temp = await util.request(`${api.getImageUrl}?id=${this.data.albummid}`,{},"get");
-    console.log('getImageUrl',temp.data.response.data.imageUrl);
-    this.setData({
-      imageUrl:temp.data.response.data.imageUrl
-    })
-  },
+  // async getMusicPlay(){
+  //   if(this.data.songmid == globalData.song){
+  //     return ;
+  //   }
+  //   let temp = await util.request(`${api.getMusicPlay}?songmid=${this.data.songmid}&justPlayUrl=all`,{},"get");
+  //   this.setData({
+  //     playUrl:temp.data.data.playUrl[`${this.data.songmid}`].url
+  //   },() => {
+  //     music.init();
+  //     if(!this.data.playUrl){
+  //       util.pxshowErrorToast('抱歉，暂无该歌曲资源',1000);
+  //       return ;
+  //     }
+  //   })
+  // },
+  // async getImageUrl(){
+  //   let temp = await util.request(`${api.getImageUrl}?id=${this.data.albummid}`,{},"get");
+  //   console.log('getImageUrl',temp.data.response.data.imageUrl);
+  //   this.setData({
+  //     imageUrl:temp.data.response.data.imageUrl
+  //   })
+  // },
 })

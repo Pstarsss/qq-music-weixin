@@ -17,7 +17,6 @@ Page({
   },
   async getTopList(){
     let temp = await util.request(api.getSongListCategories,{},"get")
-    console.log(temp);
     this.setData({
       toplist : temp.data.response.data.topList
     },() => {
@@ -25,7 +24,7 @@ Page({
   },
   async getRecommend(){
     let temp = await util.request(api.getRecommend,{},"get")
-    console.log('全部',temp);
+    // console.log('全部',temp);
     let recomPlaylist = temp.data.response.recomPlaylist.data.v_hot.map(i => {
       i.listen_num = util.getwang(i.listen_num);
       return i;
@@ -73,7 +72,7 @@ Page({
   },
   async getSongLists(){
     let temp = await util.request(`${api.getSongLists}?categoryId=6&limit=12&sortId=2&page=2`,{},"get");
-    console.log('官方',temp);
+    // console.log('官方',temp);
     temp.data.response.data.list = temp.data.response.data.list.map(i => {
       i.listennum = util.getwang(i.listennum);
       return i;
