@@ -37,8 +37,8 @@
       {
         "pagePath": "pages/categatory/index",
         "text": "分类",
-        "iconPath": "./static/image/nav-icon-category.png",
-        "selectedIconPath": "./static/image/nav-icon-category-active.png"
+        "iconPath": "./static/image/nav-icon-laboratory.png",
+        "selectedIconPath": "./static/image/nav-icon-laboratory-active.png"
       }
     ]
   },

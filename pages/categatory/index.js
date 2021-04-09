@@ -16,14 +16,16 @@ Page({
 
   onShow: function() {
     let temp = this.selectComponent('#music');
-    fire.fire('showMusicTab',{
-      index: globalData.index,
-      songlist: globalData.songlist,
-      played: music.getCurrentMusicState()
-    });
-    wx.nextTick(() => {
-      temp.showglobal();
-    })
+    if(globalData.index && globalData.songlist){
+      fire.fire('showMusicTab',{
+        index: globalData.index,
+        songlist: globalData.songlist,
+        played: music.getCurrentMusicState()
+      });
+      wx.nextTick(() => {
+        temp.showglobal();
+      })
+    }
   },
 
   onHide: function() {
