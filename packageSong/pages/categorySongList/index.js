@@ -16,6 +16,12 @@ Page({
       this.getSongLists(false);
     })
   },  
+  onShow: function () {
+    wx.nextTick(() => {
+      let temp = this.selectComponent('#music');
+      temp.showglobal();
+    })
+  },
   async getSongLists(loadmore){
     let temp = await util.request(`${api.getSongLists}?categoryId=${this.data.categoryId}&page=${this.data.page}&limit=${this.data.limit}&sortId=2`,{},"get");
     temp.data.response.data.list = temp.data.response.data.list.map(i => {

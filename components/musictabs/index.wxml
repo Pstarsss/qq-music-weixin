@@ -12,9 +12,28 @@
     <view class="circle-progress" catchtap="onChangeStatus">
       <!-- <van-circle value="{{ step }}" size="30" layer-color="rgb(50,50,50)" color="#fff" stroke-width="3" /> -->
       <van-icon wx:if="{{played}}" data-item="{{item}}" catchtap="playMusic" class="play" name="play-circle-o" size="48rpx" />
-      <van-icon wx:else name="pause-circle-o" />
+      <van-icon wx:else name="pause-circle-o" size="52rpx" catchtap="playMusic" />
+      <van-icon name="comment-o" size="52rpx" catchtap="showSonglist" />
     </view>
 
   </view>
   <image src="{{imageUrl}}" class="_playbar_img" mode="aspectFit"></image>
 </view>
+<van-popup
+  show="{{ show }}"
+  round
+  position="bottom"
+  custom-style="height: 60%"
+  bind:close="onClose"
+>
+  <view class="pop_songlist">
+    <view class="pop_total">歌曲列表{{songlist.length}}</view>
+    <block wx:for="{{songlist}}" wx:key="id">
+      <view class="pop_item" catchtap="pop_clickItem" data-index="{{index}}">
+        <view class="pop_title">{{item.title}}</view>
+        <view class="pop_">-</view>
+        <view class="pop_singer">{{item.singerName}}</view>
+      </view>
+    </block>
+  </view>
+</van-popup>

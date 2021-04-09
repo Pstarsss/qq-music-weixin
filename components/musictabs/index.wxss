@@ -27,6 +27,7 @@
   background-color: rgb(183,193,206);
   border-radius: 50rpx;
   transition: all 0.5s;
+  width: 100vw;
 }
 .playbar_cd {
   color: rgba(22, 22, 22, 0.86);
@@ -54,11 +55,40 @@
   display: flex;
   align-items: center;
   flex:1;
+  flex-wrap: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 40rpx;
 }
 .play{
-  padding: 0 10rpx
+  padding: 0 10rpx;
 }
 .circle-progress{
   display: flex;
   align-items: center;
+  padding-right: 10rpx;
+  width: 150rpx;
+  justify-content: space-around;
+}
+.pop_songlist{
+  padding-top: 40rpx;
+}
+.pop_total{
+  padding: 10rpx 0;
+}
+.pop_item{
+  display: flex;
+  font-size: 32rpx;
+  align-items: center;
+  justify-content: start;
+  padding-left: 25rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 1rpx solid #ccc; 
+}
+.pop_{
+  padding: 0 20rpx;
+}
+.pop_singer{
+  max-width: 450rpx;
+  overflow: hidden;
 }

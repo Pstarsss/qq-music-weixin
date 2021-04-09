@@ -19,6 +19,11 @@ function init(src){
   // return  innerAudioContext;
 }
 
+// 获取当前的歌曲播放状态
+function getCurrentMusicState(){
+  return innerAudioContext.paused;
+}
+
 //  播放
 function play(){
   innerAudioContext.play();
@@ -36,8 +41,6 @@ function pause(){
   })
   innerAudioContext.pause();
 };
-
-
 
 // 指定进度条  跳转
 function seek(number){
@@ -93,5 +96,6 @@ module.exports = {
   seek,
   setLoop,
   setVolume,
-  getMusicDuration
+  getMusicDuration,
+  getCurrentMusicState
 }

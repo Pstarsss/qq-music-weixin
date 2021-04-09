@@ -114,5 +114,6 @@
     </block>
   </view>
 </view>
-<musictab></musictab>
+<musictab id="music"></musictab>
+
 

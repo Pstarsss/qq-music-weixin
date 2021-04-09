@@ -35,6 +35,13 @@ Page({
   onUnload: function(){
     fire.un(this.endMusic)
   },
+  onShow: function () {
+    wx.nextTick(() => {
+      let temp = this.selectComponent('#music');
+      console.log('temp',temp);
+      temp.showglobal();
+    })
+  },
   async getDetailSongList(){
       let that = this;
       let temp = await util.request(`${api.getSongListDetail}?disstid=${that.data.disstid}`,{},'get');

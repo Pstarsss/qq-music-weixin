@@ -3,3 +3,4 @@
     <categoryItem item="{{item}}"></categoryItem>  
   </block>
 </view>
+<musictab id="music"></musictab>

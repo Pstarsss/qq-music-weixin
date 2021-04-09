@@ -9,6 +9,20 @@ Page({
   onLoad: function () {
     this.getTopList()
   },
+
+  onShow: function() {
+    wx.nextTick(() => {
+      let temp = this.selectComponent('#music');
+      console.log('temp',temp);
+      temp.showglobal();
+    })
+  },
+
+  onHide: function() {
+    const that = this;
+    let temp = this.selectComponent('#music');
+  },
+
   async getTopList(){
     let temp = await util.request(api.getSongListCategories,{},"get")
     temp.data.response.data.categories = temp.data.response.data.

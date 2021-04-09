@@ -40,4 +40,4 @@
     </van-tabs> -->
   </view>
 </view>
-<musictab opacity="0"></musictab>
+<musictab id="music"></musictab>

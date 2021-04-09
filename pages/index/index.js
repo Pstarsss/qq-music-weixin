@@ -17,12 +17,13 @@ Page({
     this.getSongLists();
   },
 
-  // onShow: function () {
-  //   console.log('123123');
-  //   this.showMusicTab = fire.on('showMusicTab',(res) => {
-  //     console.log('res',res);
-  //   })
-  // },
+  onShow: function () {
+    wx.nextTick(() => {
+      let temp = this.selectComponent('#music');
+      console.log('component',temp);
+      temp.showglobal();
+    })
+  },
 
   async getTopList(){
     let temp = await util.request(api.getSongListCategories,{},"get")

@@ -32,7 +32,7 @@
           <view class="songname_title">
             <!-- <view>{{songinfo.title}}</view> -->
             <view class="singer_list">
-             <view wx:for="{{songinfo.singer}}" wx:key="id">
+             <view class="singer_item" wx:for="{{songinfo.singer}}" wx:key="id">
                {{item.name}}
              </view>
             </view>

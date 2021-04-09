@@ -37,12 +37,8 @@ Page({
       songmid: e.id,
       mid: e.mid,
       index: e.index,
-      resource:e.resource
     },() => {
-      that._update();
-      if(!this.data.songmid){
-        that.getAlbumInfo();
-      }
+      this.data.songmid ?  that._update() : that.getAlbumInfo();
     });
     this.playingTime = fire.on('playingTime',(res) => {
       // 歌曲总时间只需算一次；需要优化
@@ -64,9 +60,9 @@ Page({
     
     fire.fire('showMusicTab',{
       index: this.data.index,
-      songlist: this.data.songlist
+      songlist: this.data.songlist,
+      played: music.getCurrentMusicState()
     });
-    console.log('fire');
   },
   onPullDownRefresh: function () {
     this._update();
@@ -80,25 +76,14 @@ Page({
   },
   _update_index(index){
     let that = this;
-    if(this.data.resource){
-      that.setData({
-        info: that.data.songlist[index],
-        mid: that.data.songlist[index].albumMid,
-        index: index,
-      }, () => {
-        that.getAlbumInfo();
-      })
-    } else{
-      that.setData({
-        info: that.data.songlist[index],
-        songmid: that.data.songlist[index].mid,
-        mid: that.data.songlist[index].album.mid,
-        index: index,
-      }, () => {
-        that._update();
-      })
-    }
-    
+    that.setData({
+      info: that.data.songlist[index],
+      songmid: that.data.songlist[index].mid,
+      mid: that.data.songlist[index].albumMid || that.data.songlist[index].album.mid,
+      index: index,
+    }, () => {
+      that.data.songmid ? that._update() : that.getAlbumInfo();
+    })
   },
   bofang(){
     music.init(this.data.playUrl);
@@ -115,10 +100,11 @@ Page({
     });
   },
   async getMusicPlay(){
-    if(!this.data.songmid){
+    let that = this;
+    if(!that.data.songmid && this.data.mid){
+      that.getAlbumInfo();
       return false;
     }
-    let that = this;
     if(that.data.songmid == globalData.song){
       return false;
     }
@@ -149,7 +135,8 @@ Page({
     }
   },
   async getLyric(){
-    if(!this.data.songmid){
+    let that = this;
+    if(!that.data.songmid){
       return false;
     }
     let temp = await util.request(`${api.getLyric}?songmid=${this.data.songmid}`,{},"get");
@@ -173,15 +160,18 @@ Page({
   },
   async getAlbumInfo(){
     let that = this;
+
     let temp = await util.request(`${api.getAlbumInfo}?albummid=${this.data.mid}`,{},"get");
     console.log('专辑资源',temp);
+    if(!temp.data.response.data.list[0].songmid){
+      util.pxshowErrorToast('抱歉，暂无该歌曲资源',1200);
+      return false;
+    }
     this.setData({
-      songmid:temp.data.response.data.list[0].songmid,
+      songmid: temp.data.response.data.list[0].songmid,
+      [`songlist[${that.data.index}].songmid`]: temp.data.response.data.list[0].songmid
     },() => {
-      that.getLyric();
-      that.getMusicPlay();
-      that.getSongInfo();
-      that.getImageUrl();
+      that._update();
     })
   },
   changeIndex(e){

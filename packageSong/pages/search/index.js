@@ -24,7 +24,10 @@ Page({
     this.getHotkey();
   },
   onShow: function () {
-
+    wx.nextTick(() => {
+      let temp = this.selectComponent('#music');
+      temp.showglobal();
+    })
   },
   onPullDownRefresh: function () {
     // let temp = '';
