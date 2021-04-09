@@ -211,7 +211,9 @@ Page({
     })
   },
   change_volume(){
-    console.log('change_volume')
+    this.setData({
+      show_volume: true
+    });
   },
   slider_volume(e){
     console.log(e);

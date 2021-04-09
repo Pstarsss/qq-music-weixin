@@ -71,6 +71,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 30rpx 0 20rpx 0;
+  position: relative;
 }
 .pic{
   font-size: 60rpx;
@@ -90,7 +91,14 @@
   font-size: 40rpx;
   color: #ffffffa6;
 }
-.section_gap{
+.volume_fn{
+  position: relative;
+}
+.volume_bar{
+  position: absolute;
+  right: -13%;
+  transform: rotate(-90deg);
+  top: -67%;
 }
 
 

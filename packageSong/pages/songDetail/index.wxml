@@ -68,11 +68,12 @@
             <view wx:else class="iconfont icon-bofang2 pic1"></view>
           </view>
           <view catchtap="deb_change_next" class="iconfont icon-xiayishou pic"></view>
-          <view catchtap="change_volume" class="iconfont icon-yinliang pic2">
-            <!-- <view wx:if="{{show_volume}}" class=" section_gap">
-                <slider bindchange="slider_volume" show-value block-size="12" value="{{volume}}" />
-            </view> -->
-        </view>
+          <!-- <view class="volume_fn">
+            <view catchtap="change_volume" class="iconfont icon-yinliang pic2"></view>
+          </view>  -->
+          <view catchtap="change_volume" class="iconfont icon-yinliang pic2"></view>
+          <slider wx:if="{{show_volume}}" class="volume_bar" bindchange="slider_volume" backgroundColor="#f7e90b" 
+          activeColor="#1aad19" show-value block-size="12" value="{{volume}}" />
         </view>
       </view>
     </swiper-item>
