@@ -240,6 +240,9 @@
   padding: 0 20rpx;
   font-size: 26rpx;
 }
+.R_item_info text{
+  padding-right: 10rpx;
+}
 .R_item_img image{
   width: 140rpx;
   height: 140rpx;

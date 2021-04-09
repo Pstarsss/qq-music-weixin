@@ -19,7 +19,7 @@ Page({
     loop: false, // 单曲循环状态
     volume: 20, // 默认的音量
     btn_state: true, // 当前点击下一曲 否则点击上一曲
-    show_volume:true, // 显示音量条
+    show_volume: false, // 显示音量条
   },
 
   /**
@@ -87,7 +87,6 @@ Page({
   },
   bofang(){
     music.init(this.data.playUrl);
-    music.play();
   },
   async getSongInfo(){
     if(!this.data.songmid){
@@ -212,13 +211,13 @@ Page({
   },
   change_volume(){
     this.setData({
-      show_volume: true
+      value: !this.data.value
     });
   },
   slider_volume(e){
     console.log(e);
     let value = e.detail.value;
-    // musicplay.setVolume();
+    musicplay.setVolume(value);
   },
   px_debounce(fn,wait = 800){
     return function () {

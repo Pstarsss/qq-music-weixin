@@ -96,9 +96,10 @@
 }
 .volume_bar{
   position: absolute;
-  right: -13%;
+  right: -18%;
   transform: rotate(-90deg);
   top: -67%;
+  width: 200rpx;
 }
 
 

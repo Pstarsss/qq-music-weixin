@@ -1,6 +1,10 @@
 import regeneratorRuntime from 'regenerator-runtime'
-const util = require('../../utils/util')
-const api = require('../../router/api')
+const util = require('../../utils/util');
+const api = require('../../router/api');
+const music = require('../../utils/musicplay');
+const fire = require('../../utils/onfire');
+const globalData = getApp().globalData
+
 Page({
 
   data: {
@@ -11,9 +15,13 @@ Page({
   },
 
   onShow: function() {
+    let temp = this.selectComponent('#music');
+    fire.fire('showMusicTab',{
+      index: globalData.index,
+      songlist: globalData.songlist,
+      played: music.getCurrentMusicState()
+    });
     wx.nextTick(() => {
-      let temp = this.selectComponent('#music');
-      console.log('temp',temp);
       temp.showglobal();
     })
   },

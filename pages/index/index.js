@@ -20,7 +20,6 @@ Page({
   onShow: function () {
     wx.nextTick(() => {
       let temp = this.selectComponent('#music');
-      console.log('component',temp);
       temp.showglobal();
     })
   },

@@ -72,8 +72,14 @@
             <view catchtap="change_volume" class="iconfont icon-yinliang pic2"></view>
           </view>  -->
           <view catchtap="change_volume" class="iconfont icon-yinliang pic2"></view>
-          <slider wx:if="{{show_volume}}" class="volume_bar" bindchange="slider_volume" backgroundColor="#f7e90b" 
-          activeColor="#1aad19" show-value block-size="12" value="{{volume}}" />
+            <slider wx:if="{{show_volume}}" 
+            class="volume_bar" bindchange="slider_volume"
+            backgroundColor="rgb(80,80,80)"
+            activeColor="#fff" 
+            show-value 
+            block-size="12" 
+            value="{{volume}}" 
+            />
         </view>
       </view>
     </swiper-item>

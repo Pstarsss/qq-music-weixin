@@ -6,22 +6,12 @@ const fire = require('../../utils/onfire')
 const globalData = getApp().globalData
 
 Component({
-  /**
-   * 组件的属性列表
-   */
-  properties: {
 
-  },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
     playUrl: '',
     imageUrl: '',
     step: 0,
     played: true,
-    currentMusic: {},
     songlist: [],
     opacity: 0,
     index: 0,
@@ -32,19 +22,7 @@ Component({
     show: false,
   },
   lifetimes:{
-    // ready(){
-    //   this.playingTime = fire.on('playingTime',(res) => {
-    //     this.setData({
-    //       currentTime_copy:res,
-    //       duration:util.timeformat(res.duration),
-    //       currentTime: util.timeformat(res.currentTime),
-    //       step:((res.currentTime).toFixed(0) / res.duration.toFixed(0)) * 100,
-    //       max: res.duration.toFixed(0)
-    //     })
-    //   }) 
-    // }
     created() {
-      console.log('created');
       const that = this;
       this.showMusicTab = fire.on('showMusicTab',(res) => {
         console.log('res',res);
@@ -56,24 +34,19 @@ Component({
           index: res.index,
           played: res.played
         },() => {
+          globalData.index = this.data.index;
+          globalData.songlist = this.data.songlist
           that.init();
         })
       })
     },
     moved: function() {
-      console.log('moved');
+      fire.un(this.showMusicTab);
     },
-    lifetimes : {
-      detached: function() {
-        console.log('detached');
-        fire.un(this.showMusicTab);
-      },
+    detached: function() {
+      fire.un(this.showMusicTab);
     },
-    pageLifetimes: {
-      hide: function() {
-        console.log('hide');
-      }
-    }
+
   },
   /**
    * 组件的方法列表
@@ -105,7 +78,6 @@ Component({
       }
       let temp = await util.request(`${api.getSongInfo}?songmid=${this.data.songmid}`,{},"get");
       this.setData({
-        songotherinfo:temp.data.response.songinfo.data.info,
         songinfo:temp.data.response.songinfo.data.track_info
       });
     },
@@ -118,15 +90,27 @@ Component({
       if(this.data.songmid == globalData.song){
         return ;
       }
+      let save_url = that.data.songlist[that.data.index].url
+      if(save_url && save_url !== void 0){
+        this.setData({
+          playUrl:save_url
+        },() => {
+          globalData.song = that.data.songmid;
+          music.init(this.data.playUrl);
+        });
+        return false;
+      }
       let temp = await util.request(`${api.getMusicPlay}?songmid=${this.data.songmid}&justPlayUrl=all`,{},"get");
       this.setData({
-        playUrl:temp.data.data.playUrl[`${this.data.songmid}`].url
+        playUrl:temp.data.data.playUrl[`${this.data.songmid}`].url,
+        [`songlist[${this.data.index}].url`]:result_url
       },() => {
         if(!this.data.playUrl){
           util.pxshowErrorToast('抱歉，暂无该歌曲资源',1000);
           return ;
         }
         globalData.song = this.data.songmid;
+        globalData.songlist = this.data.songlist;
         music.init(this.data.playUrl);
       })
     },
@@ -167,6 +151,7 @@ Component({
       if(this.data.index == index){
         return false
       } else {
+        globalData.index = this.data.index;
         that.setData({
           mid: that.data.songlist[index].albumMid,
           songmid: that.data.songlist[index].songmid,
@@ -187,8 +172,9 @@ Component({
         show: false
       })
     },
+    setGlobal(){
+    },
     showglobal() {
-      console.log('songlist',this.data.songlist);
       if(this.data.songlist.length > 0){
         this.setData({
           opacity: 1
