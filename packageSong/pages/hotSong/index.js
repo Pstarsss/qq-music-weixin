@@ -12,11 +12,13 @@ Page({
     songlist:[],
     total:0,
     loading:false,
-    finished:false
+    finished:false,
+    topicTitle: '热歌榜'
   },
   onLoad: function (options) {
     this.setData({
-      topId:options.topId
+      topId:options.topId,
+      topicTitle: options.title
     },() => {
       this.getTopListDetail(false);
     })

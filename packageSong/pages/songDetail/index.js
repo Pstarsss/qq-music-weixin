@@ -211,13 +211,12 @@ Page({
   },
   change_volume(){
     this.setData({
-      value: !this.data.value
+      show_volume: !this.data.show_volume
     });
   },
   slider_volume(e){
-    console.log(e);
     let value = e.detail.value;
-    musicplay.setVolume(value);
+    musicplay.setVolume((value) / 100);
   },
   px_debounce(fn,wait = 800){
     return function () {

@@ -39,6 +39,9 @@ Component({
           that.init();
         })
       })
+      this.endMusic = fire.on('endMusic',() => {
+        that.change_next();
+      })
     },
     moved: function() {
       fire.un(this.showMusicTab);
@@ -56,6 +59,19 @@ Component({
       this.getMusicPlay();
       this.getImageUrl();
       this.getSongInfo();
+    },
+    change_next(){
+
+      if(this.data.songlist){
+        let next_index = this.data.index >= this.data.songlist.length - 1 ? 0 : parseInt(this.data.index) + 1
+        this.setData({
+          index:next_index,
+          mid: this.data.songlist[next_index].albumMid,
+          songmid: this.data.songlist[next_index].songmid,
+        },() => {
+          this.init();
+        })
+      }
     },
     async getAlbumInfo(){
       let that = this;
@@ -101,8 +117,9 @@ Component({
         return false;
       }
       let temp = await util.request(`${api.getMusicPlay}?songmid=${this.data.songmid}&justPlayUrl=all`,{},"get");
+      let result_url = temp.data.data.playUrl[`${this.data.songmid}`].url;
       this.setData({
-        playUrl:temp.data.data.playUrl[`${this.data.songmid}`].url,
+        playUrl:result_url,
         [`songlist[${this.data.index}].url`]:result_url
       },() => {
         if(!this.data.playUrl){

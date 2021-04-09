@@ -1,6 +1,9 @@
 import regeneratorRuntime from 'regenerator-runtime'
-const util = require('../../../utils/util')
-const api = require('../../../router/api')
+const util = require('../../../utils/util');
+const api = require('../../../router/api');
+const music = require('../../../utils/musicplay');
+const fire = require('../../../utils/onfire');
+const globalData = getApp().globalData
 
 Page({
 
@@ -24,10 +27,17 @@ Page({
     this.getHotkey();
   },
   onShow: function () {
-    wx.nextTick(() => {
-      let temp = this.selectComponent('#music');
-      temp.showglobal();
-    })
+    let temp = this.selectComponent('#music');
+    if(globalData.index && globalData.songlist){
+      fire.fire('showMusicTab',{
+        index: globalData.index,
+        songlist: globalData.songlist,
+        played: music.getCurrentMusicState()
+      });
+      wx.nextTick(() => {
+        temp.showglobal();
+      })
+    }
   },
   onPullDownRefresh: function () {
     // let temp = '';

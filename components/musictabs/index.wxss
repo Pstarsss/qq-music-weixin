@@ -71,7 +71,7 @@
   justify-content: space-around;
 }
 .pop_songlist{
-  padding-top: 40rpx;
+  padding:40rpx 15prx 0;
 }
 .pop_total{
   padding: 10rpx 0;
@@ -81,8 +81,7 @@
   font-size: 32rpx;
   align-items: center;
   justify-content: start;
-  padding-left: 25rpx;
-  padding-bottom: 15rpx;
+  padding: 15rpx 0;
   border-bottom: 1rpx solid #ccc; 
 }
 .pop_{

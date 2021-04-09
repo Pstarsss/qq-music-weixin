@@ -1,5 +1,5 @@
 <view class="container">
-  <view class="header">热歌榜</view>
+  <view class="header">{{topicTitle}}</view>
   <view class="list" wx:if="{{songlist.length > 0}}">
     <block wx:for="{{songlist}}" wx:key="id" wx:for-item="item1">
       <view catchtap="onClickItem" data-index="{{index}}" class="item" data-item="{{item1}}">

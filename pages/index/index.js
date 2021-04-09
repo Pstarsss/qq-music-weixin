@@ -106,7 +106,7 @@ Page({
     let that = this;
     let temp = e.currentTarget.dataset;
     wx.navigateTo({
-      url: `/packageSong/pages/songDetail/index?mid=${temp.item.albumMid}&index=${temp.index}&resource=recommand`,
+      url: `/packageSong/pages/songDetail/index?mid=${temp.item.albumMid}&index=${temp.index}`,
       success: function(res){
         res.eventChannel.emit('tosongDetail',that.data.songRecommend)
       }

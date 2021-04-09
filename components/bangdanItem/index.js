@@ -26,7 +26,7 @@ Component({
   methods: {
     onClickItem(){
       wx.navigateTo({
-        url: `/packageSong/pages/hotSong/index?topId=${this.data.item.topId}`,
+        url: `/packageSong/pages/hotSong/index?topId=${this.data.item.topId}&title=${this.data.item.title}`,
       })
     }
   }
